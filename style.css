@@ -57,3 +57,25 @@ i {
 .fa, .fab {
     color: black;
 }
+
+@media screen and (max-width: 768px) {
+    
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #mainLeft, #mainRight {
+        width: 100% !important;
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    
+    #mainLeft {
+        border-right: none !important;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
