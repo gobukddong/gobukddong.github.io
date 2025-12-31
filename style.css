@@ -84,7 +84,7 @@ body.dark-mode .fas {
     
     #mainLeft {
         border-right: none !important;
-        border-bottom: 2px solid #ddd;
+        border-bottom: none !important;
         padding-bottom: 20px;
         margin-bottom: 20px;
     }
