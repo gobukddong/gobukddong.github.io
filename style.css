@@ -54,9 +54,18 @@ i {
     border-right: 1px solid lightgray;
 }
 
-.fa, .fab, .fas {
+
+.fa, .fab, .fas {    /* .fas 추가 */
     color: black;
+    transition: color 0.3s; /* 색상 바뀔 때 부드럽게 */
 }
+
+body.dark-mode .fa, 
+body.dark-mode .fab, 
+body.dark-mode .fas {
+    color: #f1f1f1; /* 밝은 회색/흰색 */
+}
+
 
 @media screen and (max-width: 768px) {
     
