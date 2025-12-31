@@ -80,3 +80,32 @@ i {
         margin-bottom: 20px;
     }
 }
+
+body.dark-mode {
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+body.dark-mode a {
+    color: #8ab4f8;
+}
+
+body.dark-mode .fa, body.dark-mode .fab {
+    color: #f1f1f1;
+}
+
+body.dark-mode hr {
+    background-color: #555;
+}
+
+body.dark-mode #mainLeft {
+    border-right: 1px solid #555;
+}
+
+body.dark-mode span {
+    color: #bbb !important;
+}
+
+body.dark-mode p {
+    color: #ddd;
+}
