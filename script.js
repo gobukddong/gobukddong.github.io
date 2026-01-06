@@ -1,7 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 2. Theme Toggle Logic ---
     const themeBtn = document.getElementById("themeBtn");
     
     if (themeBtn) {
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 3. Command Palette Logic ---
     const dialog = document.getElementById("commandPalette");
     const cmdBtn = document.getElementById("cmdBtn");
     const cmdInput = document.getElementById("cmdInput");
