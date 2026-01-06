@@ -2,177 +2,172 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Yang-Resume</title>
+    <meta name="description" content="Portfolio of Yang, Security Researcher and Creative Engineer at Soongsil University.">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body>  
-    <header id="header">
-        <button id="darkModeBtn" aria-label="Toggle Dark Mode">
-            <i class="fas fa-moon"></i>
-        </button>
+<body>
+    <div class="scanlines"></div>
 
-        <h1>Whoami</h1>
-        <hr>
-        Soongsil University, School of Software, College of IT, Mar 2025 - Present
-        <hr>
+    <header id="hud-header">
+        <div class="brand">
+            <span class="status-indicator"></span>
+            <span class="typing-logo">root@yang:~$</span>
+        </div>
+        
+        <nav class="hud-controls">
+            <button id="cmdBtn" class="hud-btn" aria-label="Open Command Palette">
+                <i class="fas fa-terminal"></i> 
+                <span class="shortcut-hint">CTRL+K</span>
+            </button>
+            <button id="themeBtn" class="hud-btn" aria-label="Toggle Theme">
+                <i class="fas fa-sun"></i>
+            </button>
+        </nav>
     </header>
 
-<main>
-    <article id="mainLeft">
-        <section>
-            <h2>ACTIVITIES</h2>
-            
-            <h3>ASC</h3>
-            WebHacking study (Oct 2025 - Present)
-            <br>
-            <a href="https://instagram.com/ssu_asc" target="_blank" style="font-size: 0.9em;">
-                <i class="fab fa-instagram"></i> ssu_asc
-            </a>
-            
-            <br><br>
-
-            <h3>Flavor</h3>
-            Team Breaking (Mar 2025 - Present)
-            <br>
-            <a href="https://instagram.com/flavor_ssu" target="_blank" style="font-size: 0.9em;">
-                <i class="fab fa-instagram"></i> flavor_ssu
-            </a>
-
-            <br><br>
-
-            <h3>Knock</h3>
-            Peer Mentor for the Class of 2026 (Dec 2025)  
-            <br>
-            <a href="https://knocks.co.kr/" target="_blank" style="font-size: 0.9em;">
-                <i class="fas fa-link"></i> knock site
-            </a>
-        </section>
-
-        <section>
-            <h2>AWARDS & COMPETITIONS</h2>
-            <div class="award-item" style="margin-bottom: 20px;">
-                <h3>Encouragement Prize (Team of 4)</h3>
-                <p style="margin-top: 5px;">
-                    Creative Engineering Design Project Showcase (Dec 2025)
-                    <br>
-                    <span style="font-size: 0.9em; color: #555;">
-                        - Awarded for Project <strong>'BitKiller'</strong>
-                    </span>
+    <main class="bento-grid">
+        
+        <article class="card profile-card" style="grid-area: profile;">
+            <div class="card-content">
+                <div class="glitch-wrapper">
+                    <h1 class="glitch" data-text="YANG">YANG</h1>
+                </div>
+                <p class="school-info">
+                    <i class="fas fa-university"></i> Soongsil University<br>
+                    <span class="dimmed">School of Software, Mar 2025 - Present</span>
                 </p>
+                <div class="status-badges">
+                    <span class="badge">Security</span>
+                    <span class="badge">Seoul, KR</span>
+                </div>
             </div>
+        </article>
 
-            <div class="award-item">
-                <h3>Shortlisted (Team of 2)</h3>
-                <p style="margin-top: 5px;">
-                    Soongsil Invention Idea Contest (Oct 2025)
-                    <br>
-                    <span style="color: #555; font-size: 0.95em;">
-                        - Proposed a <strong>'Marine Heavy Metal Collection System'</strong> using Ferrofluids & Drones.
-                    </span>
-                    <br>
-                    <span style="font-size: 0.9em; color: #666;">
-                        &nbsp;- Designed the Drone-Ship Communication Architecture (M2M) and real-time pollution monitoring logic using AI prediction models.
-                    </span>
-                </p>
+        <article class="card stats-card" style="grid-area: stats;">
+            <h3><i class="fab fa-github"></i> Contribution Data</h3>
+            <div class="github-widget-container">
+                <img src="https://ghchart.rshah.org/gobukddong"/>
             </div>
-        </section>
+        </article>
 
-        <section>
-            <h2>CERTIFICATIONS & LANGUAGES</h2>
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li style="margin-bottom: 15px;">
-                    <h3 style="margin-bottom: 2px;">Information Processing Technician</h3>
-                    
-                    HRDK (Dec 2025)
-
-                </li>
-
-                <li style="margin-bottom: 15px;">
-                    <h3 style="margin-bottom: 2px;">MOS Excel 2016 Expert</h3>
-                
-                    Microsoft (Dec 2025)
-
-                </li>
-
-                <li style="margin-bottom: 15px;">
-                    <h3 style="margin-bottom: 2px;">TOEIC (Score: 720)</h3>
-                    ETS (Jun 2025)
-                </li>
-            </ul>
-        </section>
-    </article>
-
-    <article id="mainRight">
-        <section>
-            <h2>PROJECTS</h2>
+        <article id="projects" class="card project-card featured" style="grid-area: projects;">
+            <div class="card-header">
+                <h2>FEATURED_OPS</h2>
+                <div class="deco-line"></div>
+            </div>
             
-            <h3>Linux Server Vulnerability Assessment Tool</h3>
-            <p style="margin-top: 0; color: #666; font-size: 0.9em;">
-                <i>ASC Project (Team Croncrew) (Oct 2025 - Dec 2025)</i>
-            </p>
-            <ul style="margin-bottom: 30px;">
-                <li><strong>Role:</strong> Security Script Developer</li>
-                <li><strong>Tech Stack:</strong> Bash Shell Scripting, Linux (Ubuntu)</li>
-                <li><strong>Description:</strong> Developed an automated tool to inspect 12 types of Linux security vulnerabilities based on KISA guidelines. Focusing on file permission security (U-08, U-14), implemented a script that validates system file integrity and merged individual modules into a unified inspection tool.</li>
-                <li><strong>Result:</strong> Successfully automated the detection of security risks and generation of log reports, streamlining the server hardening process.</li>
-            </ul>
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="p-head">
+                        <h3><i class="fas fa-shield-halved"></i> Linux Vulnerability Scanner</h3>
+                        <span class="tag">Bash</span>
+                    </div>
+                    <p>Automated inspection tool for 12+ KISA-defined Linux vulnerabilities. Developed unified audit scripts for system hardening.</p>
+                    <a href="https://github.com/gobukddong" target="_blank" class="link-btn">View Source <i class="fas fa-arrow-right"></i></a>
+                </div>
 
-            <h3>BitKiller (Motion-Sensing Air Drum)</h3>
-            <p style="margin-top: 0; color: #666; font-size: 0.9em;">
-                <i>Creative Engineering Design Project (Sep 2025 - Dec 2025)</i>
-            </p>
-            <ul style="margin-bottom: 30px;">
-                <li><strong>Role:</strong> Firmware Developer & Hardware Design</li>
-                <li><strong>Tech Stack:</strong> <br>
-                    S/W: C++, Arduino IDE <br>
-                    H/W: Arduino Nano, MPU6050, nRF24L01
-                </li>
-                <li><strong>Description:</strong> Developed a virtual drum kit allowing users to play beats in the air. Used MPU6050 sensors to detect gestures and implemented wireless communication to trigger sounds in real-time.</li>
-                <li><strong>Result:</strong> Won Encouragement Prize at the showcase and open-sourced the project on Github.</li>
-            </ul>
+                <div class="project-item">
+                    <div class="p-head">
+                        <h3><i class="fas fa-drum"></i> BitKiller (Air Drum)</h3>
+                        <span class="tag">C++ / Arduino</span>
+                    </div>
+                    <p>IoT motion-sensing instrument using MPU6050 & nRF24L01. Won Encouragement Prize at Engineering Showcase.</p>
+                </div>
 
-            <h3>React2Shell (CVE-2025-55182) Analysis</h3>
-            <p style="margin-top: 0; color: #666; font-size: 0.9em;">
-                <i>Vulnerability Research Project (Team Croncrew) (Dec 2025 - Present)</i>
-            </p>
-            <ul>
-                <li><strong>Role:</strong> (Update Soon...)</li>
-                <li><strong>Tech Stack:</strong> (Update Soon...)</li>
-                <li><strong>Description:</strong> (Update Soon...)</li>
-                <li><strong>Result:</strong> (Update Soon...)</li>
-            </ul>
-        </section>
-    </article>
-</main>
-    
-    <hr class="contact-divider">
-
-    <footer id="contact-area">
-        <section>
-            <h2>CONTACT</h2>
-            <div class="contact-links">
-                <p>
-                    <a href="mailto:gobukddang@gmail.com">
-                        <i class="fas fa-envelope" aria-hidden="true"></i> gobukddang@gmail.com
-                    </a>
-                </p>
-                <p>
-                    <a href="https://github.com/gobukddong">
-                        <i class="fab fa-github" aria-hidden="true"></i> github.com/gobukddong
-                    </a>
-                </p>
-                <p>
-                    <a href="https://instagram.com/cy_turtle">
-                        <i class="fab fa-instagram" aria-hidden="true"></i> @cy_turtle
-                    </a>
-                </p>       
+                <div class="project-item">
+                    <div class="p-head">
+                        <h3><i class="fas fa-bug"></i> React2Shell Analysis</h3>
+                        <span class="tag">CVE-2025-55182</span>
+                    </div>
+                    <p>Deep dive analysis of remote code execution vulnerabilities in modern React SSR implementations.</p>
+                </div>
             </div>
-        </section>
-    </footer>
+        </article>
+
+        <article class="card stack-card" style="grid-area: stack;">
+            <h3>TECH_STACK</h3>
+            <div class="stack-grid">
+                <i class="fab fa-linux" title="Linux"></i>
+                <i class="fab fa-python" title="Python"></i>
+                <i class="fas fa-terminal" title="Bash"></i>
+                <i class="fab fa-cuttlefish" title="C/C++"></i>
+                <i class="fab fa-js" title="JavaScript"></i>
+                <i class="fab fa-docker" title="Docker"></i>
+            </div>
+        </article>
+
+        <article class="card awards-card" style="grid-area: awards;">
+            <h3>AWARDS & CERTS</h3>
+            <ul class="clean-list">
+                <li>
+                    <span class="year">2025</span>
+                    <strong>Encouragement Prize</strong>
+                    <small>Creative Eng. Design</small>
+                </li>
+                <li>
+                    <span class="year">2025</span>
+                    <strong>Shortlisted</strong>
+                    <small>Invention Idea Contest</small>
+                </li>
+                <li>
+                    <span class="year">2025</span>
+                    <strong>Info Proc. Tech</strong>
+                    <small>HRDK Certification</small>
+                </li>
+            </ul>
+        </article>
+
+        <article class="card social-card" style="grid-area: social;">
+            <h3>CONNECT</h3>
+            <div class="social-links">
+                <a href="mailto:gobukddang@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/gobukddong" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                <a href="https://instagram.com/cy_turtle" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+        </article>
+        
+        <article class="card activity-card" style="grid-area: activity;">
+            <h3>CLAN_ACTIVITIES</h3>
+            <div class="activity-row">
+                <strong>ASC</strong> <span>WebHacking</span>
+            </div>
+            <div class="activity-row">
+                <strong>Flavor</strong> <span>Breaking</span>
+            </div>
+             <div class="activity-row">
+                <strong>Knock</strong> <span>Mentoring</span>
+            </div>
+        </article>
+
+    </main>
+
+    <dialog id="commandPalette" class="cmd-dialog">
+        <div class="cmd-wrapper">
+            <div class="cmd-header">
+                <i class="fas fa-search"></i>
+                <input type="text" id="cmdInput" placeholder="Type a command... (e.g., 'Projects', 'Github', 'Dark Mode')" autocomplete="off">
+                <span class="esc-hint">ESC</span>
+            </div>
+            <ul id="cmdList" class="cmd-list">
+                </ul>
+            <div class="cmd-footer">
+                <span><i class="fas fa-level-down-alt fa-rotate-90"></i> to select</span>
+                <span><i class="fas fa-arrow-up"></i><i class="fas fa-arrow-down"></i> to navigate</span>
+            </div>
+        </div>
+    </dialog>
 
     <script src="script.js"></script>
 </body>
