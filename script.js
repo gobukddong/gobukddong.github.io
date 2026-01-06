@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- 2. Theme Toggle Logic ---
@@ -28,36 +29,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const cmdInput = document.getElementById("cmdInput");
     const cmdList = document.getElementById("cmdList");
 
-    // ✅ commands 배열 정의 (문법 오류 수정됨)
     const commands = [
-        { 
-            id: 'home', 
-            label: 'Go to Top', 
-            icon: 'fas fa-arrow-up', 
-            action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) 
+        {
+            id: 'top',
+            label: 'Go to Top',
+            icon: 'fas fa-arrow-up',
+            action: () => window.scrollTo({ top: 0, behavior: 'smooth' })
         },
-        { 
-            id: 'projects', 
-            label: 'Jump to Projects', 
-            icon: 'fas fa-code', 
+        {
+            id: 'bottom',
+            label: 'Go to Bottom',
+            icon: 'fas fa-arrow-down',
+            action: () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+        },
+        {
+            id: 'contact',
+            label: 'Go to Contact',
+            icon: 'fas fa-envelope',
+            action: () => {
+                const contactSection = document.querySelector('.social-card');
+                if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        },
+        {
+            id: 'projects',
+            label: 'Go to Projects',
+            icon: 'fas fa-code',
             action: () => {
                 const projectSection = document.getElementById('projects');
                 if(projectSection) projectSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } 
-        },
-        { 
-            id: 'theme', 
-            label: 'Toggle Theme', 
-            icon: 'fas fa-adjust', 
-            action: () => {
-                if(themeBtn) themeBtn.click();
             }
-        },
-        { 
-            id: 'github', 
-            label: 'Open GitHub', 
-            icon: 'fab fa-github', 
-            action: () => window.open('https://github.com/gobukddong', '_blank') 
         }
     ];
 
