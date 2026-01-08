@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // [삭제됨] GSAP 스크롤 애니메이션 코드는 제거했습니다.
-
+  
     // --- 1. Theme Toggle Logic ---
     const themeBtn = document.getElementById("themeBtn");
     
@@ -71,22 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 'ls',
-            label: 'ls',
-            icon: 'fas fa-folder-open',
-            action: () => {
-                alert(
-                    "drwxr-xr-x  root  yang  4096  ./Profile\n" +
-                    "drwxr-xr-x  root  yang  4096  ./Stats\n" +
-                    "drwxr-xr-x  root  yang  4096  ./Projects\n" +
-                    "drwxr-xr-x  root  yang  4096  ./Stack\n" +
-                    "-rw-r--r--  root  yang  2048  awards.txt\n" +
-                    "-rwxr-x---  root  yang  1024  contact.sh"
-                );
-            }
-        },
-
-        {
             id: 'clear',
             label: 'clear', 
             icon: 'fas fa-eraser',
@@ -108,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 document.body.appendChild(flash);
                 
-              
                 setTimeout(() => {
                     flash.style.opacity = '0';
                     setTimeout(() => flash.remove(), 100);

@@ -238,7 +238,15 @@ body.light-mode .activity-row, body.light-mode .clean-list li { border-bottom: 1
 body.light-mode .social-btn { color: #7a8599; }
 body.light-mode .social-btn:hover { color: #1eae60; }
 body.light-mode .github-widget-container img:after { color: #7a8599; }
-
+body.light-mode .profile-card, 
+body.light-mode .profile-card p, 
+body.light-mode .profile-card span {
+    color: #222222 !important;
+}
+body.light-mode .profile-card .badge,
+body.light-mode .profile-card .glitch {
+    color: inherit; 
+}
 .role-text::after {
     content: '_';
     animation: blink 1s infinite;
