@@ -1,41 +1,3 @@
-
-.awards-area {
-    grid-area: awards;
-}
-
-.social-area {
-    grid-area: social;
-}
-
-.stack-area {
-    grid-area: stack;
-}
-
-.stats-area {
-    grid-area: stats;
-}
-.certs-area {
-    grid-area: certs;
-}
-.projects-area {
-    grid-area: projects;
-}
-
-.profile-area {
-    grid-area: profile;
-}
-
-body.light-mode .typing-logo {
-    color: #1eae60 !important;
-}
-
-.hud-controls {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-}
-
 :root {
     --bg-core: #0a0a0a;
     --bg-card: #111111;
@@ -50,54 +12,11 @@ body.light-mode .typing-logo {
     --gap: 16px;
     --radius: 12px;
 }
-.certs-list {
-    margin-top: 10px;
-    padding-left: 0;
-    list-style: none;
-    font-size: 1.08em;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.certs-list li {
-    margin-bottom: 12px;
-    line-height: 1.5;
-    text-align: left;
-    width: 100%;
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-}
-.cert-org {
-    color: var(--muted);
-    font-size: 0.98em;
-    margin-right: 4px;
-}
-.cert-date {
-    color: var(--muted);
-    font-size: 0.97em;
-}
-
-.contact-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 1.08em;
-}
-.contact-mail {
-    word-break: break-all;
-    color: var(--secondary);
-}
-.contact-icons {
-    gap: 18px;
-    margin-bottom: 0;
-}
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background-color: var(--bg-core); color: var(--secondary); font-family: var(--font-mono); line-height: 1.6; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; transition: background-color 0.3s, color 0.3s; }
 
-/*... Scrollbar, HUD Header 스타일 유지... */
+/* Scrollbar & Header */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-core); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -109,7 +28,7 @@ body { background-color: var(--bg-core); color: var(--secondary); font-family: v
     width: 100%;
     height: 60px;
     background: rgba(10, 10, 10, 0.8);
-    -webkit-backdrop-filter: blur(10px); /* Safari 지원 */
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     display: flex;
@@ -134,102 +53,76 @@ body { background-color: var(--bg-core); color: var(--secondary); font-family: v
     align-items: center;
     gap: 8px;
     transition: all 0.2s;
-    font-weight: 600;
-    box-shadow: none;
+    font-weight: 500;
 }
 .hud-btn:hover, .hud-btn.active {
     color: var(--primary);
     background: rgba(0, 255, 65, 0.09);
-    box-shadow: none;
-}
-html.light-mode .hud-btn, body.light-mode .hud-btn {
-    background: #fff;
-    color: #222;
-    border: none;
-}
-html.light-mode .hud-btn:hover, body.light-mode .hud-btn:hover, html.light-mode .hud-btn.active, body.light-mode .hud-btn.active {
-    background: #eafff0;
-    color: var(--primary);
 }
 
-
-.awards-list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-top: 16px;
+/* Card & Bento Grid Base */
+.bento-grid { 
+    margin-top: 80px; 
+    padding: 24px; 
+    max-width: 1200px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    display: grid; 
+    gap: var(--gap); 
+    grid-template-columns: 1fr; 
+    /* Mobile Default Areas */
+    grid-template-areas: 
+        "profile" 
+        "stats" 
+        "projects" 
+        "stack" 
+        "certs"
+        "activity" 
+        "awards" 
+        "social"; 
 }
-.award-item {
-    background: rgba(0,255,65,0.04);
-    border-left: 4px solid var(--primary);
-    padding: 16px 18px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px 0 rgba(0,255,65,0.04);
-    margin-bottom: 0;
-}
-.award-title {
-    font-size: 1.08em;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 4px;
-}
-.award-meta {
-    font-size: 0.98em;
-    color: var(--muted);
-    margin-bottom: 2px;
-}
-.award-desc {
-    font-size: 1em;
-    color: var(--secondary);
-}
-html.light-mode .hud-btn, body.light-mode .hud-btn {
-    background: #fff;
-    color: #222;
-    border-color: #b5eec0;
-}
-html.light-mode .hud-btn:hover, body.light-mode .hud-btn:hover, html.light-mode .hud-btn.active, body.light-mode .hud-btn.active {
-    background: #eafff0;
-    color: var(--primary);
-    border-color: var(--primary);
-}
-.shortcut-hint { font-size: 0.75rem; opacity: 0.6; background: #333; padding: 2px 6px; border-radius: 4px; display: none; }
-@media (min-width: 768px) {.shortcut-hint { display: inline-block; } }
-
-
-.bento-grid { margin-top: 80px; padding: 24px; max-width: 1200px; margin-left: auto; margin-right: auto; display: grid; gap: var(--gap); grid-template-columns: 1fr; grid-template-areas: "profile" "stats" "projects" "stack" "activity" "awards" "certs" "social"; }
-@media (min-width: 768px) {
-    .bento-grid {
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: auto auto auto auto auto auto;
-        grid-template-areas:
-            "profile profile stats stats"
-            "stack projects projects projects"
-            "activity projects projects projects"
-            "awards awards awards awards"
-            "certs certs certs certs"
-            "social social social social";
-    }
-    .awards-card {
-        min-width: 0;
-        min-height: 180px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        grid-column: 1 / span 4 !important;
-        width: 100%;
-        margin-top: 0;
-    }
-
-    .social-card {
-        grid-column: 1 / span 4 !important;
-        width: 100%;
-        margin-top: 0;
-    }
-}
-
 
 .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
 .card:hover { transform: translateY(-2px); border-color: var(--primary); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); }
+
+
+@media (min-width: 768px) {
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        
+        /* [배치 지도]
+           1행: 프로필(2칸) | 깃허브(2칸)
+           2행: 스택(1칸) | 자격증(1칸) | 프로젝트(2칸)
+           3행: 활동(2칸) | 프로젝트(계속 이어짐)
+           4행: 수상(4칸)
+           5행: 연락처(4칸)
+        */
+        grid-template-areas:
+            "profile profile stats stats"
+            "stack stack projects projects"
+            "certs certs projects projects"
+            "activity activity projects projects"
+            "awards awards awards awards"
+            "social social social social";
+    }
+
+    .profile-card { grid-area: profile; }
+    .stats-card   { grid-area: stats; }
+    .stack-card   { grid-area: stack; }
+    .certs-card   { grid-area: certs; }
+    .project-card { 
+        grid-area: projects; 
+        width: 100%;
+        height: 100%; 
+    }
+    .activity-card { grid-area: activity; }
+    .awards-card   { grid-area: awards; margin-top: 0; }
+    .social-card   { grid-area: social; margin-top: 0; }
+}
+
+/* Profile Card */
 .profile-card { display: flex; flex-direction: column; justify-content: center; min-height: 280px; background: linear-gradient(145deg, var(--bg-card) 0%, #1a1a1a 100%); }
 .glitch { font-size: 3.5rem; font-weight: 800; color: var(--secondary); position: relative; }
 .glitch::before,.glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-card); }
@@ -238,7 +131,7 @@ html.light-mode .hud-btn:hover, body.light-mode .hud-btn:hover, html.light-mode 
 .status-badges { display: flex; gap: 10px; margin-top: 15px; }
 .badge { background: rgba(0, 255, 65, 0.1); color: var(--primary); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; border: 1px solid rgba(0, 255, 65, 0.2); }
 
-/* --- GitHub Widget Styling (Updated) --- */
+/* GitHub Widget */
 .github-widget-container {
     display: flex;
     justify-content: center;
@@ -247,47 +140,57 @@ html.light-mode .hud-btn:hover, body.light-mode .hud-btn:hover, html.light-mode 
     width: 100%;
     height: 100%;
     min-height: 150px;
-    background: #0d1117; /* GitHub Dark Color Fallback */
+    background: #0d1117;
     border-radius: 8px;
 }
-.github-widget-container img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-}
+.github-widget-container img { max-width: 100%; height: auto; object-fit: contain; display: block; }
+.github-widget-container img:after { content: " (Stats currently unavailable via API)"; font-size: 0.8rem; color: var(--muted); }
 
-
-.github-widget-container img:after { 
-    content: " (Stats currently unavailable via API)";
-    font-size: 0.8rem;
-    color: var(--muted);
-}
-
+/* Lists & Projects */
+.clean-list { list-style: none; padding: 0; }
+.clean-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
 .project-list { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
 .project-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 2px solid var(--border); transition: border-left-color 0.3s; }
 .project-item:hover { border-left-color: var(--primary); }
 .p-head { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.tag { font-size: 0.75rem; color: var(--bg-core); background: var(--muted); padding: 2px 6px; border-radius: 4px; }
-.clean-list { list-style: none; padding: 0; }
-.clean-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.social-links { display: flex; gap: 15px; font-size: 1.5rem; margin-top: 10px; }
-.social-btn { color: var(--muted); transition: color 0.3s; }
+
+/* Certs */
+.certs-list li { margin-bottom: 12px; line-height: 1.5; text-align: left; width: 100%; align-items: flex-start; display: flex; flex-direction: column; }
+.cert-org { color: var(--muted); font-size: 0.98em; margin-right: 4px; }
+.cert-date { color: var(--muted); font-size: 0.97em; }
+
+/* Activities (New Styles with Date) */
+.activity-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.activity-row:last-child { border-bottom: none; }
+.act-info { display: flex; gap: 10px; align-items: center; }
+.act-meta { display: flex; align-items: center; gap: 15px; }
+.act-date { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+.dimmed { color: var(--muted); font-size: 0.9em; }
+
+/* Awards Layout */
+.awards-list { display: flex; flex-direction: column; gap: 24px; margin-top: 16px; }
+.awards-card { min-height: auto; }
+
+/* Contact */
+.contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 0; }
+.social-btn { color: var(--muted); transition: color 0.3s; font-size: 1.5rem; }
 .social-btn:hover { color: var(--primary); }
+
+/* Tech Stack */
 .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; font-size: 2rem; text-align: center; color: var(--muted); margin-top: 15px; }
 .stack-grid i:hover { color: var(--primary); transform: scale(1.1); transition: all 0.2s; }
-.activity-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-
+/* Command Palette */
 .cmd-dialog { position: fixed; top: 20%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background: var(--bg-card); color: var(--secondary); border: 1px solid var(--border); border-radius: var(--radius); padding: 0; box-shadow: 0 20px 50px rgba(0,0,0,0.8); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
 .cmd-dialog[open] { opacity: 1; pointer-events: all; display: flex; flex-direction: column; }
-
-.cmd-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.13);
-    -webkit-backdrop-filter: blur(4px); /* Safari 지원 */
-    backdrop-filter: blur(4px);
-}
+.cmd-dialog::backdrop { background: rgba(0, 0, 0, 0.13); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .cmd-header { display: flex; align-items: center; padding: 16px; border-bottom: 1px solid var(--border); }
 .cmd-header i { color: var(--muted); margin-right: 12px; }
 #cmdInput { flex: 1; background: transparent; border: none; color: var(--secondary); font-family: var(--font-mono); font-size: 1.1rem; outline: none; }
@@ -296,11 +199,12 @@ html.light-mode .hud-btn:hover, body.light-mode .hud-btn:hover, html.light-mode 
 .cmd-item.selected,.cmd-item:hover { background: rgba(255, 255, 255, 0.05); color: var(--primary); }
 .cmd-footer { padding: 8px 16px; background: #0f0f0f; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: flex-end; gap: 15px; }
 
+/* Animations */
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); } }
 @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 20% { clip-path: inset(60% 0 10% 0); } 100% { clip-path: inset(10% 0 50% 0); } }
 @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 20% { clip-path: inset(80% 0 5% 0); } 100% { clip-path: inset(40% 0 20% 0); } }
 
-
+/* Light Mode Overrides */
 body.light-mode {
     --bg-core: #f6f8fa;
     --bg-card: #ffffff;
@@ -312,102 +216,25 @@ body.light-mode {
     --accent-red: #ff4b6e;
     --accent-blue: #00b4ff;
 }
-body.light-mode .card {
-    box-shadow: 0 4px 24px 0 rgba(30, 174, 96, 0.08), 0 1.5px 6px 0 rgba(0,0,0,0.04);
-    border: 1.5px solid var(--border);
-    background: linear-gradient(135deg, #fafdff 60%, #e8f5ee 100%);
-}
-body.light-mode .card:hover {
-    background: linear-gradient(135deg, #f3f7fa 60%, #e0f3e8 100%);
-    box-shadow: 0 8px 32px 0 rgba(30, 174, 96, 0.13), 0 2px 8px 0 rgba(0,0,0,0.06);
-    border-color: var(--primary);
-}
-body.light-mode .profile-card {
-    background: linear-gradient(120deg, #fafdff 60%, #e8f5ee 100%);
-}
-body.light-mode .glitch {
-    color: #1eae60;
-    text-shadow: 0 2px 8px #e0f3e8;
-}
-body.light-mode .badge {
-    background: rgba(30, 174, 96, 0.12);
-    color: #1eae60;
-    border: 1px solid #b6e7d6;
-}
-body.light-mode .project-item {
-    background: rgba(30, 174, 96, 0.06);
-    border-left: 2.5px solid #b6e7d6;
-}
-body.light-mode .project-item:hover {
-    border-left-color: #1eae60;
-    background: rgba(30, 174, 96, 0.13);
-}
-body.light-mode .awards-card, body.light-mode .certs-card {
-    background: linear-gradient(120deg, #fafdff 60%, #e8f5ee 100%);
-    box-shadow: 0 4px 24px 0 rgba(30, 174, 96, 0.08), 0 1.5px 6px 0 rgba(0,0,0,0.04);
-}
-body.light-mode .tag {
-    background: #e0f3e8;
-    color: #1eae60;
-}
-body.light-mode .cert-org, body.light-mode .cert-date {
-    color: #7a8599;
-}
-body.light-mode .github-widget-container {
-    background: #e8f5ee;
-}
-body.light-mode .status-indicator {
-    background: #1eae60;
-    box-shadow: 0 0 10px #b6e7d6;
-}
-body.light-mode .hud-btn {
-    background: #fafdff;
-    color: #1eae60;
-    border: 1.5px solid #b6e7d6;
-    box-shadow: 0 1.5px 6px 0 rgba(30, 174, 96, 0.08);
-}
-body.light-mode .hud-btn:hover, body.light-mode .hud-btn.active {
-    background: #e0f3e8;
-    color: #1eae60;
-    border-color: #1eae60;
-}
-body.light-mode .shortcut-hint {
-    background: #e0f3e8;
-    color: #1eae60;
-}
-body.light-mode .cmd-dialog {
-    background: #fafdff;
-    color: #222b38;
-    border: 1.5px solid #b6e7d6;
-    box-shadow: 0 4px 24px 0 rgba(30, 174, 96, 0.08);
-}
-body.light-mode .cmd-item.selected, body.light-mode .cmd-item:hover {
-    background: #e0f3e8;
-    color: #1eae60;
-}
-body.light-mode .cmd-footer {
-    background: #e8f5ee;
-    color: #7a8599;
-}
-body.light-mode .stack-grid i {
-    color: #7a8599;
-}
-body.light-mode .stack-grid i:hover {
-    color: #1eae60;
-}
-body.light-mode .activity-row {
-    border-bottom: 1px solid #e0f3e8;
-}
-body.light-mode .clean-list li {
-    border-bottom: 1px solid #e0f3e8;
-}
-body.light-mode .social-btn {
-    color: #7a8599;
-}
-body.light-mode .social-btn:hover {
-    color: #1eae60;
-}
-body.light-mode .github-widget-container img:after {
-    color: #7a8599;
-}
-body.light-mode.glitch::before, body.light-mode.glitch::after { background: var(--bg-card); }
+body.light-mode .typing-logo { color: #1eae60 !important; }
+body.light-mode .card { box-shadow: 0 4px 24px 0 rgba(30, 174, 96, 0.08); border: 1.5px solid var(--border); background: linear-gradient(135deg, #fafdff 60%, #e8f5ee 100%); }
+body.light-mode .card:hover { border-color: var(--primary); background: linear-gradient(135deg, #f3f7fa 60%, #e0f3e8 100%); }
+body.light-mode .profile-card { background: linear-gradient(120deg, #fafdff 60%, #e8f5ee 100%); }
+body.light-mode .glitch { color: #1eae60; text-shadow: 0 2px 8px #e0f3e8; }
+body.light-mode .glitch::before, body.light-mode .glitch::after { background: var(--bg-card); }
+body.light-mode .badge { background: rgba(30, 174, 96, 0.12); color: #1eae60; border: 1px solid #b6e7d6; }
+body.light-mode .project-item { background: rgba(30, 174, 96, 0.06); border-left: 2.5px solid #b6e7d6; }
+body.light-mode .project-item:hover { border-left-color: #1eae60; background: rgba(30, 174, 96, 0.13); }
+body.light-mode .github-widget-container { background: #e8f5ee; }
+body.light-mode .tag { background: #e0f3e8; color: #1eae60; }
+body.light-mode .cert-org, body.light-mode .cert-date, body.light-mode .act-date { color: #7a8599; }
+body.light-mode .hud-btn { background: #fafdff; color: #222; border: 1.5px solid #b6e7d6; }
+body.light-mode .hud-btn:hover, body.light-mode .hud-btn.active { background: #e0f3e8; color: #1eae60; border-color: #1eae60; }
+body.light-mode .cmd-dialog { background: #fafdff; color: #222b38; border: 1.5px solid #b6e7d6; }
+body.light-mode .cmd-item.selected, body.light-mode .cmd-item:hover { background: #e0f3e8; color: #1eae60; }
+body.light-mode .cmd-footer { background: #e8f5ee; color: #7a8599; }
+body.light-mode .stack-grid i:hover { color: #1eae60; }
+body.light-mode .activity-row, body.light-mode .clean-list li { border-bottom: 1px solid #e0f3e8; }
+body.light-mode .social-btn { color: #7a8599; }
+body.light-mode .social-btn:hover { color: #1eae60; }
+body.light-mode .github-widget-container img:after { color: #7a8599; }
