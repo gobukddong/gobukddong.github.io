@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // [삭제됨] GSAP 스크롤 애니메이션 코드는 제거했습니다.
+
+    // --- 1. Theme Toggle Logic ---
     const themeBtn = document.getElementById("themeBtn");
     
     if (themeBtn) {
@@ -21,46 +24,61 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- 2. Command Palette Logic ---
     const dialog = document.getElementById("commandPalette");
     const cmdBtn = document.getElementById("cmdBtn");
     const cmdInput = document.getElementById("cmdInput");
     const cmdList = document.getElementById("cmdList");
 
+    // [수정] 비어있던 명령어 리스트를 채웠습니다 (이게 비어있으면 터미널이 작동 안 함)
     const commands = [
         {
             id: 'top',
             label: 'Go to Top',
             icon: 'fas fa-arrow-up',
             action: () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
         },
         {
             id: 'bottom',
             label: 'Go to Bottom',
             icon: 'fas fa-arrow-down',
             action: () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+
         },
-        {
-            id: 'contact',
-            label: 'Go to Contact',
-            icon: 'fas fa-envelope',
-            action: () => {
-                const contactSection = document.querySelector('.social-card');
-                if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+        { 
+            id: 'projects', 
+            label: 'Go to Projects', 
+            icon: 'fas fa-folder-open', 
+            action: () => scrollTo('.project-card') 
         },
-        {
-            id: 'projects',
-            label: 'Go to Projects',
-            icon: 'fas fa-code',
-            action: () => {
-                const projectSection = document.getElementById('projects');
-                if(projectSection) projectSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+        { 
+            id: 'stats', 
+            label: 'View GitHub Stats', 
+            icon: 'fas fa-chart-pie', 
+            action: () => scrollTo('.stats-card') 
+        },
+        { 
+            id: 'stack', 
+            label: 'Check Tech Stack', 
+            icon: 'fas fa-layer-group', 
+            action: () => scrollTo('.stack-card') 
+        },
+        { 
+            id: 'contact', 
+            label: 'Contact Me', 
+            icon: 'fas fa-envelope', 
+            action: () => scrollTo('.social-card') 
         }
     ];
 
     let selectedIndex = 0;
     let filteredCommands = [...commands];
+
+    function scrollTo(selector) {
+        const el = document.querySelector(selector);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     const openPalette = () => {
         if (dialog) {
@@ -101,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cmdList.innerHTML = '';
         filteredCommands.forEach((cmd, index) => {
             const li = document.createElement("li");
-            li.className = `cmd-item ${index === selectedIndex? 'selected' : ''}`;
+            li.className = `cmd-item ${index === selectedIndex ? 'selected' : ''}`;
             li.innerHTML = `
                 <span><i class="${cmd.icon}"></i> ${cmd.label}</span>
                 <span style="font-size:0.8em; opacity:0.5;">↵</span>
@@ -162,4 +180,29 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    const textElement = document.querySelector('.role-text');
+    
+    const textToType = "Hello!\nI am Yang sangyun, majoring in Software.\nSkilled in C, Python, Linux, and JavaScript.\nI am currently dedicating my research to Software Security, specifically diving deep into Web Hacking techniques.";
+    
+    if (textElement && !window.isTypingRunning) {
+        window.isTypingRunning = true;
+        textElement.textContent = "";  
+        
+        let typeIndex = 0;
+
+        function typeWriter() {
+            if (typeIndex < textToType.length) {
+                
+                textElement.textContent += textToType.charAt(typeIndex);
+                typeIndex++;
+                
+                const randomSpeed = Math.random() * 100 + 20;
+                setTimeout(typeWriter, randomSpeed);
+            }
+        }
+
+        setTimeout(typeWriter, 1000);
+    }
+    
 });

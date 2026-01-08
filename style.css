@@ -60,6 +60,13 @@ body { background-color: var(--bg-core); color: var(--secondary); font-family: v
     background: rgba(0, 255, 65, 0.09);
 }
 
+
+.hud-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 /* Card & Bento Grid Base */
 .bento-grid { 
     margin-top: 80px; 
@@ -92,18 +99,12 @@ body { background-color: var(--bg-core); color: var(--secondary); font-family: v
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
         
-        /* [배치 지도]
-           1행: 프로필(2칸) | 깃허브(2칸)
-           2행: 스택(1칸) | 자격증(1칸) | 프로젝트(2칸)
-           3행: 활동(2칸) | 프로젝트(계속 이어짐)
-           4행: 수상(4칸)
-           5행: 연락처(4칸)
-        */
         grid-template-areas:
-            "profile profile stats stats"
-            "stack stack projects projects"
-            "certs certs projects projects"
-            "activity activity projects projects"
+            "profile profile profile profile"
+            "stats stats stats stats"
+            "stack stack certs certs"
+            "activity activity activity activity"
+            "projects projects projects projects"
             "awards awards awards awards"
             "social social social social";
     }
@@ -199,12 +200,11 @@ body { background-color: var(--bg-core); color: var(--secondary); font-family: v
 .cmd-item.selected,.cmd-item:hover { background: rgba(255, 255, 255, 0.05); color: var(--primary); }
 .cmd-footer { padding: 8px 16px; background: #0f0f0f; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: flex-end; gap: 15px; }
 
-/* Animations */
+
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); } }
 @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 20% { clip-path: inset(60% 0 10% 0); } 100% { clip-path: inset(10% 0 50% 0); } }
 @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 20% { clip-path: inset(80% 0 5% 0); } 100% { clip-path: inset(40% 0 20% 0); } }
 
-/* Light Mode Overrides */
 body.light-mode {
     --bg-core: #f6f8fa;
     --bg-card: #ffffff;
@@ -238,3 +238,24 @@ body.light-mode .activity-row, body.light-mode .clean-list li { border-bottom: 1
 body.light-mode .social-btn { color: #7a8599; }
 body.light-mode .social-btn:hover { color: #1eae60; }
 body.light-mode .github-widget-container img:after { color: #7a8599; }
+
+.role-text::after {
+    content: '_';
+    animation: blink 1s infinite;
+    color: var(--primary);
+    margin-left: 5px;
+}
+
+
+.role-text {
+    color: whitesmoke;
+    font-weight: 10;
+    margin-bottom: 10px;
+    
+    white-space: pre-wrap; 
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
