@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     
     const themeBtn = document.getElementById("themeBtn");
