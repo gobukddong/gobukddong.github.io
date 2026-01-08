@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cmdInput = document.getElementById("cmdInput");
     const cmdList = document.getElementById("cmdList");
 
-    // [수정] 비어있던 명령어 리스트를 채웠습니다 (이게 비어있으면 터미널이 작동 안 함)
     const commands = [
         {
             id: 'top',
