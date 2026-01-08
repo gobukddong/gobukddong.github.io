@@ -69,6 +69,52 @@ document.addEventListener("DOMContentLoaded", () => {
             label: 'Contact Me', 
             icon: 'fas fa-envelope', 
             action: () => scrollTo('.social-card') 
+        },
+
+        {
+            id: 'ls',
+            label: 'ls',
+            icon: 'fas fa-folder-open',
+            action: () => {
+                alert(
+                    "drwxr-xr-x  root  yang  4096  ./Profile\n" +
+                    "drwxr-xr-x  root  yang  4096  ./Stats\n" +
+                    "drwxr-xr-x  root  yang  4096  ./Projects\n" +
+                    "drwxr-xr-x  root  yang  4096  ./Stack\n" +
+                    "-rw-r--r--  root  yang  2048  awards.txt\n" +
+                    "-rwxr-x---  root  yang  1024  contact.sh"
+                );
+            }
+        },
+
+        {
+            id: 'clear',
+            label: 'clear', 
+            icon: 'fas fa-eraser',
+            action: () => {
+               
+                window.scrollTo({ top: 0, behavior: 'auto' });
+                
+           
+                const flash = document.createElement('div');
+                flash.style.position = 'fixed';
+                flash.style.top = '0';
+                flash.style.left = '0';
+                flash.style.width = '100vw';
+                flash.style.height = '100vh';
+                flash.style.backgroundColor = '#000';
+                flash.style.zIndex = '9999';
+                flash.style.opacity = '1';
+                flash.style.transition = 'opacity 0.5s ease';
+                
+                document.body.appendChild(flash);
+                
+              
+                setTimeout(() => {
+                    flash.style.opacity = '0';
+                    setTimeout(() => flash.remove(), 100);
+                }, 700);
+            }
         }
     ];
 
