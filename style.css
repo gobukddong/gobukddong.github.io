@@ -96,17 +96,17 @@ body { background-color: var(--bg-core); color: var(--secondary); font-family: v
 @media (min-width: 768px) {
     .bento-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         grid-template-rows: auto;
         
         grid-template-areas:
-            "profile profile profile profile"
-            "stats stats stats stats"
-            "stack stack certs certs"
-            "clubs clubs activities activities"
-            "projects projects projects projects"
-            "awards awards awards awards"
-            "social social social social";
+            "profile profile profile profile profile profile"
+            "stats stats stats stats stats stats"
+            "stack stack certs certs certs certs"
+            "clubs clubs activities activities activities activities"
+            "projects projects projects projects projects projects"
+            "awards awards awards awards awards awards"
+            "social social social social social social";
     }
 
     .profile-card { grid-area: profile; }
