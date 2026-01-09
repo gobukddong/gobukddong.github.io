@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Detail - ASC</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanlines"></div>
+
+    <header id="hud-header">
+        <div class="brand">
+            <a href="index.html" class="hud-btn" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Back to Resume
+            </a>
+        </div>
+        <nav class="hud-controls">
+            <button id="themeBtn" class="hud-btn"><i class="fas fa-sun"></i></button>
+        </nav>
+    </header>
+
+   <main class="bento-grid" style="
+        max-width: none !important;
+        width: 100%;
+        height: calc(100vh - 60px);
+        margin-top: 60px;
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+    ">
+        
+        <article class="card" style="
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0;             
+        ">
+            
+            <div class="card-header">
+                <h1>ASC</h1>
+                <span class="dimmed">Academic Security Club</span>
+                <div class="deco-line" style="margin-top: 15px;"></div>
+            </div>
+
+            <div class="detail-content" style="
+                margin-top: 30px; 
+                flex: 1;
+                overflow-y: auto;
+                padding-right: 10px;
+            ">
+
+                <section>
+    <h3 style="color: var(--primary); margin-bottom: 15px;">
+        <i class="fas fa-check-circle"></i> What I Did
+    </h3>
+
+    <li class="accordion-item" onclick="toggleDetail(this)">
+        <div class="accordion-header">
+            <span>
+                <i class="fas fa-chevron-right arrow-icon"></i> 
+                Web Hacking study
+            </span>
+            <span class="dimmed">Nov 2025~</span>
+        </div>
+        
+        <div class="accordion-body">
+            <div class="detail-text">
+                <ul class="clean-list">
+                    <li>Cookie Sandwich Technique<span class="dimmed">Cookie Injection</span></li>
+                    <li>Script Gadget Technique<span class="dimmed">DOM-based XSS</span></li>
+                    <li>Impedance Mismatch Technique<span class="dimmed">SQL Injection</span></li>
+                </ul>
+            </div>
+        </div>
+    </li>
+
+    <li class="accordion-item" style="margin-top: 5px;" onclick="toggleDetail(this)">
+        <div class="accordion-header">
+            <span>
+                <i class="fas fa-chevron-right arrow-icon"></i> 
+                Projects
+            </span>
+            <span class="dimmed">Oct 2025~Feb 2026</span>
+        </div>
+        
+        <div class="accordion-body">
+            <div class="detail-text">
+                <ul class="clean-list">
+                    <li>Linux Vulnerability Scanner<span class="dimmed">Bash Shell</span></li>
+                    <li>React2shell Analysis<span class="dimmed">React</span></li>
+                </ul>
+            </div>
+        </div>
+    </li>
+
+    <li class="accordion-item" style="margin-top: 5px;" onclick="toggleDetail(this)">
+        <div class="accordion-header">
+            <span>
+                <i class="fas fa-chevron-right arrow-icon"></i> 
+                Seminar
+            </span>
+            <span class="dimmed">Dec 2025</span>
+        </div>
+        
+        <div class="accordion-body">
+            <div class="detail-text">
+                <ul class="clean-list">
+                    <li>ASC & Swing Joint Seminar<span class="dimmed">2025.12.20</span></li>
+                </ul>
+            </div>
+        </div>
+    </li>
+    <li class="accordion-item" style="margin-top: 5px;" onclick="toggleDetail(this)">
+        <div class="accordion-header">
+            <span>
+                <i class="fas fa-chevron-right arrow-icon"></i> 
+                Blockchain study
+            </span>
+            <span class="dimmed"> Sep 2025</span>
+        </div>
+        
+        <div class="accordion-body">
+            <div class="detail-text">
+                <ul class="clean-list">
+                    <li>Ethernaut Openzeppelin(1-11,17)<span class="dimmed">ethernaut CTF</span></li>
+                    <li>CryptoZombies(Lesson 1,2)<span class="dimmed">Solidity</span></li>
+                </ul>
+            </div>
+        </div>
+    </li>
+
+</section>
+
+                <br><br>
+                
+                <div style="text-align: right;">
+                    <a href="https://instagram.com/ssu_asc" target="_blank" class="social-btn" style="text-decoration: none; font-size: 1rem;">
+                        Visit Instagram <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <script src="script.js"></script>
+    <style>
+    
+    /* [새로 추가된 부분] 리스트 아이템 정렬 및 줄바꿈 방지 */
+    .clean-list {
+        margin-top: 10px;
+        padding-left: 10px; /* 들여쓰기 유지 */
+    }
+    
+    .clean-list li {
+        display: flex;               /* 양쪽 정렬을 위해 Flexbox 사용 */
+        justify-content: space-between; /* 왼쪽 글자와 오른쪽 글자를 양 끝으로 */
+        align-items: center;         /* 수직 중앙 정렬 */
+        margin-bottom: 8px;          /* 항목 간 간격 */
+    }
+
+    /* 오른쪽 흐린 텍스트 (Bash Shell 등) 설정 */
+    .clean-list li .dimmed {
+        white-space: nowrap;  /* [핵심] 줄바꿈 절대 금지 */
+        margin-left: 15px;    /* 왼쪽 글자와 최소한 이만큼은 떨어지게 */
+        flex-shrink: 0;       /* 공간이 좁아져도 찌그러지지 않게 */
+    }
+
+    /* 기존 스타일들 */
+    .accordion-item {
+        display: block !important;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .accordion-item:hover {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .accordion-header {
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        width: 100%;
+        padding: 12px 15px; 
+        box-sizing: border-box; 
+    }
+
+    .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        opacity: 0.8;
+    }
+    
+    .detail-text {
+        /* 들여쓰기 값 유지 */
+        padding: 10px 15px 15px 0px; 
+        font-size: 0.95em;
+        line-height: 1.6;
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        margin-top: 0; 
+    }
+
+    .arrow-icon {
+        margin-right: 12px;
+        font-size: 0.85em;
+        transition: transform 0.3s;
+        color: var(--primary);
+        transform-origin: center; 
+    }
+    .accordion-item.active .arrow-icon {
+        transform: rotate(90deg);
+    }
+</style>
+
+<script>
+    function toggleDetail(element) {
+        element.classList.toggle('active');
+        
+        var body = element.querySelector('.accordion-body');
+        if (body.style.maxHeight) {
+            body.style.maxHeight = null;
+        } else {
+            body.style.maxHeight = body.scrollHeight + "px";
+        }
+    }
+</script>
+</body>
+</html>
