@@ -3,30 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yang-Resume</title>
+    <title>Yang-Resume Server</title>
     <meta name="description" content="Portfolio of Yang">
     
-    <link rel="stylesheet" href="style.css">
-    
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- External Libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="scanlines"></div>
-
+    <!-- HUD Header -->
     <header id="hud-header">
         <div class="brand">
             <span class="status-indicator"></span>
             <span class="typing-logo">root@yang:~$</span>
+            <div class="server-status-group hidden-on-mobile">
+                <div class="status-item">
+                    <span>UPTIME:</span>
+                    <span id="uptime" class="status-value">00:00:00</span>
+                </div>
+                <div class="status-item">
+                    <span>CPU:</span>
+                    <span id="cpu-stat" class="status-value"></span>
+                </div>
+            </div>
         </div>
         
         <nav class="hud-controls">
+            <button id="monitorBtn" class="hud-btn" aria-label="Toggle Monitor">
+                <i class="fas fa-chart-line"></i>
+            </button>
             <button id="cmdBtn" class="hud-btn" aria-label="Open Command Palette">
                 <i class="fas fa-search"></i>
             </button>
@@ -36,6 +51,41 @@
         </nav>
     </header>
 
+    <!-- System Monitor Widget -->
+    <div id="sysMonitor" class="sys-monitor">
+        <div class="sys-title">
+            <span>MONITOR</span>
+            <span style="color:var(--primary)">●</span>
+        </div>
+        <div class="sys-row">
+            <span>CPU Load</span>
+            <span id="widget-cpu"></span>
+        </div>
+        <div class="sys-bar-bg"><div id="bar-cpu" class="sys-bar-fill" style="width: 12%"></div></div>
+        <div style="margin-bottom:8px"></div>
+
+        <div class="sys-row">
+            <span>Memory</span>
+            <span id="widget-mem"></span>
+        </div>
+        <div class="sys-bar-bg"><div id="bar-mem" class="sys-bar-fill" style="width: 25%"></div></div>
+        <div style="margin-bottom:8px"></div>
+        
+        <div class="sys-row">
+            <span>Network</span>
+            <span id="widget-net"></span>
+        </div>
+        
+        <div class="sys-row" style="margin-top:10px; font-size: 0.7rem; color:var(--muted);">
+            <span>Location: Seoul, KR</span>
+        </div>
+        
+        <div class="sys-row" style="margin-top:10px; font-size: 0.7rem; color:var(--muted);">
+            <span>Don't worry, it's just a demo. I made it for practice.</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
     <main class="bento-grid">
         
         <article class="card profile-card">
@@ -45,7 +95,7 @@
                 </div>
                 <p class="role-text">
                 </p>
-                <hr class="divider">
+                <hr class="divider" style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
                 <p class="school-info">
                     <i class="fas fa-university"></i> Soongsil University<br>
                     <span class="dimmed">School of Software, Mar 2025 - Present</span>
@@ -59,33 +109,53 @@
         </article>
 
         <article class="card stats-card">
-            <h3><i class="fab fa-github"></i> GRASS</h3>
+            <h2><i class="fab fa-github"></i> GRASS</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             <div class="github-widget-container">
-                <img src="https://ghchart.rshah.org/gobukddong?" alt="GitHub contribution chart for gobukddong"/>
+                <img src="https://ghchart.rshah.org/00ff41/gobukddong" alt="GitHub contribution chart for gobukddong" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:var(--muted)\'>Github Data Offline</span>'"/>
             </div>
         </article>
 
         <article class="card stack-card">
-            <h3>TECH_STACK</h3>
-            <div class="stack-grid">
-                <i class="fab fa-linux" title="Linux"></i>
-                <i class="fab fa-ubuntu" title="Ubuntu"></i>
-                <i class="fab fa-python" title="Python"></i>
-                <i class="fab fa-cuttlefish" title="C/C++"></i>
-                <i class="fab fa-js" title="JavaScript"></i>
-                <i class="fab fa-html5" title="HTML5"></i>
-                <i class="fab fa-css3-alt" title="CSS3"></i>
-                <i class="fas fa-infinity" title="Arduino"></i>
-                <i class="fab fa-docker" title="Docker"></i>
-                <i class="fab fa-github" title="GitHub"></i>
-                <i class="fas fa-terminal" title="bash shell"></i>
-                <i class="fab fa-ethereum" title="Solidity"></i>
-                <i class="fas fa-file-excel" title="Excel"></i>
+            <h2>TECH_STACK</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
+            <div class="stack-wrapper">
+                
+                <div class="stack-category">
+                    <h4 class="cat-title proficient">
+                        <i class="fas fa-star"></i> Proficient
+                    </h4>
+                    <div class="badges-container">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">C</span>
+                        <span class="tech-badge">Linux(Ubuntu)</span>
+                        <span class="tech-badge">MOS Excel</span>
+                    </div>
+                </div>
+
+                <div class="stack-divider"></div>
+
+                <div class="stack-category">
+                    <h4 class="cat-title experienced">
+                        <i class="fas fa-hammer"></i> Experienced
+                    </h4>
+                    <div class="badges-container">
+                        <span class="tech-badge">Bash Shell</span>
+                        <span class="tech-badge">Solidity</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">HTML/CSS</span>
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">Arduino</span>
+                    </div>
+                </div>
+
             </div>
         </article>
 
         <article class="card certs-card">
-            <h3>CERTIFICATIONS & LANGUAGES</h3>
+            <h2>CERTIFICATIONS & LANGUAGES</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             <ul class="certs-list clean-list">
                 <li><strong>Information Processing Technician</strong><br><span class="cert-org">HRDK</span> <span class="cert-date">(Dec 2025)</span></li>
                 <li><strong>MOS Excel 2016 Expert</strong><br><span class="cert-org">Microsoft</span> <span class="cert-date">(Dec 2025)</span></li>
@@ -93,9 +163,9 @@
             </ul>
         </article>
 
-              <article class="card activities-card">
-            <h3>ACTIVITIES</h3>
-            
+        <article class="card activities-card">
+            <h2>ACTIVITIES</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             <div class="activity-row">
                 <div class="act-info">
                     <strong>Knock</strong> 
@@ -107,21 +177,17 @@
                 </div>
             </div>
         </article>
+
         <article class="card clubs-card">
-            <h3>CLUBS</h3>
-            
+            <h2>CLUBS</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             <div class="activity-row">
                 <div class="act-info">
                     <strong>ASC</strong> 
-                    <span class="dimmed">WebHacking</span>
                 </div>
                 <div class="act-meta">
                     <span class="act-date">Oct 2025 ~</span>
-<<<<<<< HEAD
                     <a href="asc_detail.html" class="social-btn" aria-label="detailed view">
-=======
-                    <a href="asc_detail.html" class="social-btn" aria-label="상세 내용 보기">
->>>>>>> f13db7f54146103db57a76a9c49716c6d90e16df
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -130,11 +196,10 @@
             <div class="activity-row">
                 <div class="act-info">
                     <strong>Flavor</strong> 
-                    <span class="dimmed">Breaking</span>
                 </div>
                 <div class="act-meta">
                     <span class="act-date">Mar 2025 ~</span>
-                    <a href="flavor_detail.html" class="social-btn" aria-label="상세 내용 보기">
+                    <a href="flavor_detail.html" class="social-btn" aria-label="detailed view">
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -144,7 +209,7 @@
         <article id="projects" class="card project-card featured">
             <div class="card-header">
                 <h2>PROJECTS</h2>
-                <div class="deco-line"></div>
+                <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             </div>
             <div class="project-list">
                 <div class="project-item">
@@ -167,9 +232,20 @@
                 </div>
             </div>
         </article>
+        
+        <!-- [수정] 로그 섹션 제거 및 Writeups 유지 -->
+        <article class="card writeups-card">
+             <h2>WRITEUPS / CTF</h2>
+             <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
+             <p class="dimmed">Security analysis & CTF solutions</p>
+             <div style="margin-top: 20px; color: var(--muted); font-style: italic;">
+                 update later...
+             </div>
+        </article>
 
         <article class="card awards-card">
-            <h3>AWARDS & COMPETITIONS</h3>
+            <h2>AWARDS & COMPETITIONS</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             <div class="awards-list">
                 <div class="project-item">
                     <div class="p-head">
@@ -188,7 +264,8 @@
         </article>
 
         <article class="card social-card">
-            <h3>CONTACT</h3>
+            <h2>CONTACT</h2>
+            <div class="deco-line" style="width: 50px; height: 2px; background: var(--primary); margin: 10px 0;"></div>
             <div class="contact-row contact-icons">
                 <a href="mailto:gobukddang@gmail.com" target="_blank" rel="noopener" class="social-btn" aria-label="이메일 보내기">
                     <i class="fas fa-envelope"></i>
@@ -208,7 +285,7 @@
         <div class="cmd-wrapper">
             <div class="cmd-header">
                 <i class="fas fa-search"></i>
-                <input type="text" id="cmdInput" placeholder="Type a command... (e.g., 'Go to Top', 'Go to Bottom', 'Go to Contact', 'List Sections')" autocomplete="off">
+                <input type="text" id="cmdInput" placeholder="Type a command..." autocomplete="off">
                 <span class="esc-hint">ESC</span>
             </div>
             <ul id="cmdList" class="cmd-list">
@@ -219,7 +296,8 @@
             </div>
         </div>
     </dialog>
-
+    
+    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>

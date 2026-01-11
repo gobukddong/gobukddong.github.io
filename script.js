@@ -1,6 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
-    // --- 1. Theme Toggle Logic ---
+    
+    // --- System Monitor Logic ---
+    const monitorBtn = document.getElementById('monitorBtn');
+    const sysMonitor = document.getElementById('sysMonitor');
+    
+    if(monitorBtn && sysMonitor) {
+        monitorBtn.addEventListener('click', () => {
+            sysMonitor.classList.toggle('visible');
+            monitorBtn.classList.toggle('active');
+        });
+    }
+
+    // Simulate stats updates
+    function updateStats() {
+        // Header stats
+        const cpuVal = Math.floor(Math.random() * 30) + 5; // 5-35%
+        const memVal = (Math.random() * 2 + 3).toFixed(1); // 3.0-5.0 GB
+        
+        const headCpu = document.getElementById('cpu-stat');
+        if(headCpu) headCpu.innerText = `${cpuVal}%`;
+
+        // Widget stats
+        const wCpu = document.getElementById('widget-cpu');
+        const wMem = document.getElementById('widget-mem');
+        const wNet = document.getElementById('widget-net');
+        const barCpu = document.getElementById('bar-cpu');
+        const barMem = document.getElementById('bar-mem');
+
+        if(wCpu) wCpu.innerText = `${cpuVal}%`;
+        if(barCpu) barCpu.style.width = `${cpuVal}%`;
+
+        if(wMem) wMem.innerText = `${memVal}GB`;
+        if(barMem) barMem.style.width = `${(parseFloat(memVal)/16)*100}%`; // Assuming 16GB max
+
+        if(wNet) wNet.innerText = `${(Math.random() * 50).toFixed(1)}kb/s`;
+    }
+    setInterval(updateStats, 2000);
+    updateStats();
+
+    // Uptime counter
+    const uptimeEl = document.getElementById('uptime');
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+        const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        if(uptimeEl) uptimeEl.innerText = `${h}:${m}:${s}`;
+    }, 1000);
+
+
+    // --- Theme Toggle Logic ---
     const themeBtn = document.getElementById("themeBtn");
     
     if (themeBtn) {
@@ -8,10 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const body = document.body;
             const icon = themeBtn.querySelector('i');
             
-            // Toggle the class
             body.classList.toggle('light-mode');
             
-            // Check current state AFTER toggle
             if (body.classList.contains('light-mode')) {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
@@ -22,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. Command Palette Logic ---
+    // --- Command Palette Logic ---
     const dialog = document.getElementById("commandPalette");
     const cmdBtn = document.getElementById("cmdBtn");
     const cmdInput = document.getElementById("cmdInput");
@@ -67,34 +115,19 @@ document.addEventListener("DOMContentLoaded", () => {
             icon: 'fas fa-envelope', 
             action: () => scrollTo('.social-card') 
         },
-
+        // [유지] whoami 커맨드: 간단한 알림으로 사용자 정보 표시
         {
-            id: 'clear',
-            label: 'clear', 
-            icon: 'fas fa-eraser',
-            action: () => {
-               
-                window.scrollTo({ top: 0, behavior: 'auto' });
-                
-           
-                const flash = document.createElement('div');
-                flash.style.position = 'fixed';
-                flash.style.top = '0';
-                flash.style.left = '0';
-                flash.style.width = '100vw';
-                flash.style.height = '100vh';
-                flash.style.backgroundColor = '#000';
-                flash.style.zIndex = '9999';
-                flash.style.opacity = '1';
-                flash.style.transition = 'opacity 0.5s ease';
-                
-                document.body.appendChild(flash);
-                
-                setTimeout(() => {
-                    flash.style.opacity = '0';
-                    setTimeout(() => flash.remove(), 100);
-                }, 700);
-            }
+            id: 'whoami',
+            label: 'whoami',
+            icon: 'fas fa-user-secret',
+            action: () => alert("User: Guest\nRole: Visitor\nPermissions: Read-Only")
+        },
+        // [유지] date 커맨드: 현재 시간 표시
+        {
+            id: 'date',
+            label: 'date',
+            icon: 'fas fa-clock',
+            action: () => alert(new Date().toString())
         }
     ];
 
@@ -208,8 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const textElement = document.querySelector('.role-text');
-    
-    const textToType = "Hello!\nI am Yang sangyun, majoring in Software.\nSkilled in C, Python, Linux, and JavaScript.\nI am currently dedicating my research to Software Security, specifically diving deep into Web Hacking techniques.";
+    const textToType = "Hello!\nI am Yang sangyun, majoring in Software.\nI am currently dedicating my research to Software Security, specifically diving deep into Web Hacking techniques.";
     
     if (textElement && !window.isTypingRunning) {
         window.isTypingRunning = true;
@@ -219,16 +251,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function typeWriter() {
             if (typeIndex < textToType.length) {
-                
                 textElement.textContent += textToType.charAt(typeIndex);
                 typeIndex++;
-                
                 const randomSpeed = Math.random() * 100 + 20;
                 setTimeout(typeWriter, randomSpeed);
             }
         }
-
         setTimeout(typeWriter, 1000);
     }
-    
 });
