@@ -205,15 +205,13 @@ body {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: auto;
         
-        /* [수정됨] Logs 영역 삭제 및 Writeups 확장 */
         grid-template-areas:
-            "profile profile profile profile"
-            "stats stats stats stats"
-            "stack stack certs certs"
-            "clubs clubs activities activities"
-            "projects projects projects projects"
-            "writeups writeups writeups writeups" 
-            "awards awards awards awards"
+            "profile profile profile profile profile profile"
+            "stats stats stats stats stats stats stats"
+            "stack stack certs certs certs certs"
+            "clubs clubs activities activities activities activities"
+            "writeups writeups writeups awards awards awards"
+            "projects projects projects projects" 
             "social social social social";
     }
 
