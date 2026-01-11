@@ -211,8 +211,8 @@ body {
             "stack stack certs certs certs certs"
             "clubs clubs activities activities activities activities"
             "writeups writeups writeups awards awards awards"
-            "projects projects projects projects" 
-            "social social social social";
+            "projects projects projects projects projects projects " 
+            "social social social social social social";
     }
 
     .profile-card { grid-area: profile; }
