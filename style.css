@@ -199,20 +199,23 @@ body {
 .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; z-index: 1; }
 .card:hover { transform: translateY(-2px); border-color: var(--primary); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); }
 
+/* Desktop Grid Layout */
 @media (min-width: 768px) {
     .bento-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         grid-template-rows: auto;
         
+        /* [수정됨] Logs 영역 삭제 및 Writeups 확장 */
         grid-template-areas:
-            "profile profile profile profile"
-            "stats stats stats stats stats"
-            "stack stack certs certs"
-            "clubs clubs activities activities"
-            "writeups writeups awards awards"
-            "projects projects projects projects" 
-            "social social social social";
+            "profile profile stack stack certs certs"
+            "profile profile stack stack certs certs"
+            "stats stats stats stats stats stats"
+            "clubs clubs activities activities activities activities"
+            "writeups writeups writeups writeups writeups writeups" 
+            "projects projects projects projects projects projects"
+            "awards awards awards awards awards awards"
+            "social social social social social social";
     }
 
     .profile-card { grid-area: profile; }
