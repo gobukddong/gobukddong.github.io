@@ -57,11 +57,7 @@ export default function DocumentModal({ document, isOpen, onClose }: DocumentMod
             </button>
             
             <div className="p-8 pb-6 border-b border-neutral-800 bg-neutral-900">
-              <div className="flex items-center gap-3 mb-4 text-blue-400">
-                <FileText size={24} />
-                <span className="text-sm font-bold uppercase tracking-widest">{document.category}</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">{document.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{document.title}</h2>
               <p className="text-neutral-400 text-lg">{document.summary}</p>
             </div>
             

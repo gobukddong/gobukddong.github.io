@@ -33,16 +33,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
         <header className="space-y-6 pt-10">
           <BackButton />
           
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider rounded-full border border-blue-500/20">
-                {project.category}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-outfit text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
               {project.title}
             </h1>
-            <p className="text-xl text-neutral-400 leading-relaxed max-w-2xl">
+            <p className="text-xl text-neutral-400 font-sans leading-relaxed max-w-2xl">
               {project.summary}
             </p>
           </div>

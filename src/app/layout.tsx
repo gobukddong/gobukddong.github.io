@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Orbitron } from "next/font/google";
 import "./globals.css";
 import StickyNav from "@/components/StickyNav";
 import ScrollProgressButton from "@/components/ScrollProgressButton";
+import SpaceEffect from "@/components/SpaceEffect";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
 
 export const metadata: Metadata = {
   title: "Director's Video Folio",
@@ -19,10 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-black text-white`}>
-        <StickyNav />
-        {children}
-        <ScrollProgressButton />
+      <head>
+        <link rel="stylesheet" as="style" crossOrigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+      </head>
+      <body className={`${orbitron.variable} font-sans antialiased bg-black text-white relative min-h-screen`}>
+        <SpaceEffect />
+        <div className="relative z-10">
+          <StickyNav />
+          {children}
+          <ScrollProgressButton />
+        </div>
       </body>
     </html>
   );
