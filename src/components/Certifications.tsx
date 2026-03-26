@@ -48,11 +48,6 @@ export default function Certifications() {
           <div>
             <h3 className="text-white font-bold text-lg mb-1">{cert.name}</h3>
             <p className="text-neutral-400 text-sm">{cert.issuer}</p>
-            {cert.date && (
-              <p className="text-neutral-500 text-sm mt-1">
-                {cert.date}
-              </p>
-            )}
           </div>
         </motion.div>
       ))}

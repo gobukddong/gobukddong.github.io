@@ -3,6 +3,7 @@ export interface DocumentProject {
   title: string;
   category: string;
   summary: string;
+  content?: string;
 }
 
 export const documents: DocumentProject[] = [
