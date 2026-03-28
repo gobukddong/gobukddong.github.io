@@ -83,9 +83,40 @@ function SkillBrick({
     }
   }, [isBrokenAll, containerRef]);
 
+  const playSound = (freq: number, duration: number, type: OscillatorType = "sine") => {
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(10, ctx.currentTime + duration);
+      
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) {
+      // Audio context might be blocked or not supported
+    }
+  };
+
   const handleClick = () => {
     if (isGlobalBroken || isBrokenAll) return;
     
+    // Play sound based on progress
+    if (clicks < 4) {
+      playSound(150 + Math.random() * 50, 0.1, "sine");
+    } else {
+      playSound(100, 0.3, "sawtooth");
+    }
+
     // Add random popup
     const randomText = REACTIONS[Math.floor(Math.random() * REACTIONS.length)];
     const id = Date.now();
@@ -127,7 +158,7 @@ function SkillBrick({
             initial={{ opacity: 0, y: 0, scale: 0.5 }}
             animate={{ opacity: 1, y: -45, scale: 1 }}
             exit={{ opacity: 0, y: -65, scale: 0.8 }}
-            className="absolute z-50 pointer-events-none whitespace-nowrap text-[10px] font-outfit font-bold text-white/90 bg-white/10 px-2.5 py-1 rounded-full border border-white/20 shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
+            className="absolute z-50 pointer-events-none whitespace-nowrap text-[10px] font-outfit font-bold text-zinc-950 bg-white px-2.5 py-1 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
             style={{ 
               left: "50%",
               transform: "translateX(-50%)",
@@ -158,6 +189,7 @@ function SkillBrick({
             ease: isBrokenAll ? "anticipate" : "easeOut"
         }}
         className="relative z-10"
+        style={{ willChange: "transform, opacity, scale, rotate" }}
       >
         <AnimatePresence mode="wait">
           {!isGlobalBroken ? (
@@ -168,12 +200,13 @@ function SkillBrick({
               exit={{ opacity: 0, scale: 0.5 }}
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.85, filter: "brightness(0.6)" }}
+              onClick={handleClick}
               transition={{ type: "spring", stiffness: 600, damping: 20 }}
               className="
                 relative flex items-center justify-center px-6 py-2.5
-                bg-white/10 text-neutral-200 font-outfit font-light text-xs md:text-sm tracking-[0.2em] uppercase
-                rounded-full border border-white/5 overflow-hidden
-                hover:bg-white/15 hover:text-white hover:border-white/10
+                bg-[rgba(255,255,255,0.1)] text-neutral-200 font-outfit font-light text-xs md:text-sm tracking-[0.2em] uppercase
+                rounded-full border border-[rgba(255,255,255,0.05)] overflow-hidden
+                hover:bg-[rgba(255,255,255,0.15)] hover:text-white hover:border-[rgba(255,255,255,0.1)]
                 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_0_8px_rgba(255,255,255,0.05)]
                 hover:shadow-[0_12px_44px_rgba(0,0,0,0.5),inset_0_0_12px_rgba(255,255,255,0.1)]
                 cursor-pointer select-none group
@@ -181,9 +214,9 @@ function SkillBrick({
               "
             >
               {/* Shimmer / Shine Effect */}
-              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.1)] to-transparent pointer-events-none" />
               
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(255,255,255,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <Cracks clicks={clicks} />
               <span className="relative z-10 drop-shadow-sm">{skill}</span>
             </motion.div>
@@ -200,7 +233,8 @@ function SkillBrick({
                     scale: 0.1,
                   }}
                   transition={{ duration: 0.5 }}
-                  className="absolute w-2 h-2 bg-neutral-700 rounded-sm"
+                  className="absolute w-2 h-2 bg-neutral-100 rounded-sm"
+                  style={{ willChange: "transform, opacity" }}
                 />
               ))}
             </div>
@@ -258,7 +292,7 @@ export default function TechStack() {
     <div className="w-full max-w-4xl mx-auto p-4 md:p-8 pt-8 relative min-h-[400px]" ref={containerRef}>
       <div className="relative pb-12 flex flex-wrap justify-center gap-4 transition-all duration-1000">
         {/* Floor Line */}
-        <div className={`absolute bottom-6 inset-x-4 h-1 bg-neutral-800/30 rounded-full transition-all duration-1000 ${isBrokenAll ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'}`} />
+        <div className={`absolute bottom-6 inset-x-4 h-1 bg-[rgba(38,38,38,0.3)] rounded-full transition-all duration-1000 ${isBrokenAll ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'}`} />
         
         {skills.map((skill, index) => (
           <SkillBrick 
@@ -285,7 +319,7 @@ export default function TechStack() {
                 onClick={handleReset}
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-white/10 border border-white/20 rounded-full text-white font-outfit font-medium text-sm tracking-[0.2em] uppercase shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-colors"
+                className="px-8 py-3 bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] rounded-full text-white font-outfit font-medium text-sm tracking-[0.2em] uppercase shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-colors"
               >
                 Restore Stack
               </motion.button>

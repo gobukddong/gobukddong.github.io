@@ -9,6 +9,7 @@ import Link from "next/link";
 export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHoleActive?: boolean }) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [mountTime, setMountTime] = useState(0);
+  const [sunPopups, setSunPopups] = useState<{ id: number; text: string; x: number; y: number }[]>([]);
 
   useEffect(() => {
     setMountTime(Date.now() / 1000);
@@ -28,7 +29,7 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
       radius: 180,
       size: 40,
       duration: 25,
-      className: "bg-gradient-to-br from-red-900 to-neutral-900 border border-red-500/50 shadow-[0_0_20px_rgba(220,38,38,0.5)]",
+      className: "bg-gradient-to-br from-red-900 to-neutral-900 border border-[rgba(239,68,68,0.5)] shadow-[0_0_20px_rgba(220,38,38,0.5)]",
       name: "Linux Vuln scanner"
     },
     {
@@ -47,7 +48,7 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
       className: "bg-stone-600 border border-stone-400 shadow-[0_0_15px_rgba(168,162,158,0.4)]",
       name: "Air Drum",
       hasRing: true,
-      ringColor: "border-orange-200/40"
+      ringColor: "border-[rgba(254,215,170,0.4)]"
     },
     {
       id: "5",
@@ -69,8 +70,36 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
         <motion.div 
             animate={isBlackHoleActive ? { y: 1500, scale: 0, opacity: 0, rotate: 720 } : { y: 0, scale: 1, opacity: 1, rotate: 0 }}
             transition={{ duration: 3, ease: "anticipate" }}
-            className="absolute w-24 h-24 rounded-full bg-gradient-to-br from-yellow-200 via-orange-400 to-red-600 shadow-[0_0_80px_60px_rgba(249,115,22,0.15),0_0_30px_10px_rgba(253,224,71,0.4)] z-10 flex items-center justify-center"
+            className="absolute w-24 h-24 rounded-full bg-gradient-to-br from-yellow-200 via-orange-400 to-red-600 shadow-[0_0_80px_60px_rgba(249,115,22,0.15),0_0_30px_10px_rgba(253,224,71,0.4)] z-10 flex items-center justify-center cursor-pointer"
+            onClick={() => {
+              const id = Date.now();
+              const message = Math.random() > 0.5 ? "hi :)" : "hello!";
+              const newPopup = { 
+                id, 
+                text: message, 
+                x: 65 + (Math.random() - 0.5) * 40,
+                y: -75 + (Math.random() - 0.5) * 40
+              };
+              setSunPopups(prev => [...prev, newPopup]);
+              setTimeout(() => {
+                setSunPopups(prev => prev.filter(p => p.id !== id));
+              }, 4000);
+            }}
+            whileTap={{ scale: 0.9 }}
         >
+           <AnimatePresence>
+              {sunPopups.map(popup => (
+                <motion.div
+                  key={popup.id}
+                  initial={{ opacity: 0, y: 0, x: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, y: popup.y, x: popup.x, scale: 1.2 }}
+                  exit={{ opacity: 0, y: popup.y - 20, x: popup.x + 20, scale: 0.8 }}
+                  className="absolute z-50 pointer-events-none whitespace-nowrap text-sm font-outfit font-bold text-zinc-950 bg-white px-4 py-1.5 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+                >
+                  {popup.text}
+                </motion.div>
+              ))}
+           </AnimatePresence>
            <div className="w-full h-full rounded-full animate-pulse opacity-50 bg-white blur-sm"></div>
         </motion.div>
 
@@ -86,7 +115,7 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
               <motion.div 
                 animate={isBlackHoleActive ? { y: 1500, scale: 0, opacity: 0, rotate: index * 90 } : { y: 0, scale: 1, opacity: 1, rotate: 0 }}
                 transition={{ duration: 2.5 + (index * 0.2), ease: "anticipate" }}
-                className="absolute rounded-full border border-neutral-700/40"
+                className="absolute rounded-full border border-[rgba(64,64,64,0.4)]"
                 style={{ 
                   width: planet.radius * 2, 
                   height: planet.radius * 2,

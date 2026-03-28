@@ -102,7 +102,10 @@ function LicenseCard({
       <motion.div
         ref={cardRef}
         className="w-full h-full relative preserve-3d cursor-pointer"
-        style={{ willChange: "transform, scale" }}
+        style={{ 
+          willChange: "transform, scale, rotateY",
+          transformStyle: "preserve-3d"
+        }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={onToggleFocus}
@@ -127,7 +130,7 @@ function LicenseCard({
           }}
         >
           <motion.div 
-            className="w-full h-full rounded-[2rem] border-2 border-white/20 bg-white/5 flex flex-col p-7 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden group"
+            className="w-full h-full rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] flex flex-col p-7 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden group"
             style={{ 
               rotateX: isFocused ? 0 : tiltX,
               rotateY: isFocused ? 0 : tiltY,
@@ -140,26 +143,25 @@ function LicenseCard({
             <div className="flex justify-between items-start mb-6 relative z-10">
               <div className="flex flex-col">
                 <span className="text-[11px] font-mono font-black tracking-[0.4em] text-emerald-500 uppercase mb-1">Credential</span>
-                <div className="w-10 h-1 bg-emerald-500/30 rounded-full" />
+                <div className="w-10 h-1 bg-[rgba(16,185,129,0.3)] rounded-full" />
               </div>
             </div>
 
             <div className="flex flex-col flex-1 relative z-10 justify-center">
-              <span className="text-[11px] font-sans font-black uppercase tracking-[0.2em] text-white/30 block mb-2">{item.category}</span>
+              <span className="text-[11px] font-sans font-black uppercase tracking-[0.2em] text-[rgba(255,255,255,0.3)] block mb-2">{item.category}</span>
               <h3 className="text-white font-black text-2xl md:text-3xl tracking-tight leading-none mb-4">{item.name}</h3>
-              <p className="text-white/50 text-sm font-bold truncate">{item.issuer}</p>
+              <p className="text-[rgba(255,255,255,0.5)] text-sm font-bold truncate">{item.issuer}</p>
             </div>
 
-            <div className="mt-auto flex justify-between items-end relative z-10 pt-4 border-t border-white/5">
-               <div className="text-[10px] font-mono font-black text-white/10 tracking-[0.3em]">SECURE_ID_0x{item.id}</div>
-               <div className="text-xs font-mono font-black text-white/70">{item.date}</div>
+            <div className="mt-auto flex justify-between items-end relative z-10 pt-4 border-t border-[rgba(255,255,255,0.05)]">
+               <div className="text-[10px] font-mono font-black text-[rgba(255,255,255,0.1)] tracking-[0.3em]">SECURE_ID_0x{item.id}</div>
+               <div className="text-xs font-mono font-black text-[rgba(255,255,255,0.7)]">{item.date}</div>
             </div>
           </motion.div>
         </div>
 
-        {/* BACK FACE (Advanced Iridescent Meta-Prompt) */}
         <div 
-          className="absolute inset-0 w-full h-full backface-hidden rounded-[2rem] border-2 border-white/60 bg-neutral-950 overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.2)]"
+          className="absolute inset-0 w-full h-full backface-hidden rounded-[2rem] border-2 border-[rgba(255,255,255,0.6)] bg-neutral-950 overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.2)]"
           style={{ 
             transform: "rotateY(180deg) translateZ(1px)",
             backfaceVisibility: "hidden",
@@ -177,24 +179,24 @@ function LicenseCard({
           <div className="absolute inset-0 flex flex-col p-8 z-10">
             {/* Main Content */}
             <div className="flex-1 flex flex-col justify-center gap-2">
-                <span className="text-[11px] font-mono font-black uppercase tracking-[0.5em] text-white/40">Credential Issuer</span>
+                <span className="text-[11px] font-mono font-black uppercase tracking-[0.5em] text-[rgba(255,255,255,0.4)]">Credential Issuer</span>
                 <h3 className="text-white font-black text-2xl leading-none tracking-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                   {item.issuer}
                 </h3>
-                <p className="text-white/40 text-[11px] font-bold italic mb-6">{item.backInfo.issuerEn}</p>
+                <p className="text-[rgba(255,255,255,0.4)] text-[11px] font-bold italic mb-6">{item.backInfo.issuerEn}</p>
             </div>
 
             {/* Footer HUD */}
-            <div className="mt-8 flex justify-between items-end border-t border-white/5 pt-5">
+            <div className="mt-8 flex justify-between items-end border-t border-[rgba(255,255,255,0.05)] pt-5">
                 <div className="flex flex-col gap-1">
-                    <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-tighter">{item.backInfo.status}</span>
+                    <span className="text-[10px] font-mono font-bold text-[rgba(255,255,255,0.4)] uppercase tracking-tighter">{item.backInfo.status}</span>
                     <div className="flex gap-1.5">
-                        <div className="w-2 h-2 bg-emerald-500/20 rounded-sm" />
-                        <div className="w-2 h-2 bg-emerald-500/40 rounded-sm" />
-                        <div className="w-2 h-2 bg-emerald-500/60 rounded-sm" />
+                        <div className="w-2 h-2 bg-[rgba(16,185,129,0.2)] rounded-sm" />
+                        <div className="w-2 h-2 bg-[rgba(16,185,129,0.4)] rounded-sm" />
+                        <div className="w-2 h-2 bg-[rgba(16,185,129,0.6)] rounded-sm" />
                     </div>
                 </div>
-                <div className="text-[10px] font-mono font-black text-white/20 select-none">SCAN_COMPLETE: 100%</div>
+                <div className="text-[10px] font-mono font-black text-[rgba(255,255,255,0.2)] select-none">SCAN_COMPLETE: 100%</div>
             </div>
           </div>
 
@@ -240,17 +242,20 @@ export default function Certifications() {
                 <motion.div 
                     animate={{ rotate: 360 }}
                     transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] border-[1px] border-emerald-500/5 rounded-full dashed opacity-40"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] border-[1px] border-[rgba(16,185,129,0.05)] rounded-full dashed opacity-40"
                     style={{ borderStyle: "dashed", borderWidth: "2px" }}
                 />
                 <motion.div 
                     animate={{ rotate: -360 }}
                     transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] border-[1px] border-blue-500/5 rounded-full dashed opacity-30"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] border-[1px] border-[rgba(59,130,246,0.05)] rounded-full dashed opacity-30"
                     style={{ borderStyle: "dashed", borderWidth: "1px" }}
                 />
                 {/* Central Soft Glow behind the grid */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 blur-[150px] rounded-full" />
+                <div 
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[rgba(255,255,255,0.1)] blur-[150px] rounded-full" 
+                  style={{ willChange: "opacity" }}
+                />
             </motion.div>
         )}
       </AnimatePresence>

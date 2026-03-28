@@ -41,7 +41,7 @@ export default function ActivityCard({ activity, index, x, y, isBlackHoleActive 
                 duration: 3 + Math.random() * 2,
                 delay: index * 0.5
               }}
-              className="absolute inset-[-20px] rounded-full bg-emerald-500/20 blur-md pointer-events-none"
+              className="absolute inset-[-20px] rounded-full bg-[rgba(16,185,129,0.2)] blur-md pointer-events-none"
             />
             
             {/* Star Core */}
@@ -58,7 +58,7 @@ export default function ActivityCard({ activity, index, x, y, isBlackHoleActive 
                 y: isHovered ? -20 : 10,
                 pointerEvents: isHovered ? 'auto' : 'none'
               }}
-              className="absolute left-1/2 -translate-x-1/2 bottom-full mb-6 w-56 md:w-64 p-5 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 text-left"
+              className="absolute left-1/2 -translate-x-1/2 bottom-full mb-6 w-56 md:w-64 p-5 rounded-2xl bg-[rgba(0,0,0,0.8)] backdrop-blur-xl border border-[rgba(255,255,255,0.1)] shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 text-left"
             >
               <div className="relative">
                 <span className="text-[10px] font-mono font-bold text-emerald-400 tracking-widest uppercase mb-1 block opacity-80">
@@ -67,12 +67,12 @@ export default function ActivityCard({ activity, index, x, y, isBlackHoleActive 
                 <h3 className="text-white font-bold text-lg mb-2 leading-tight">
                   {activity.title}
                 </h3>
-                <div className="h-px w-8 bg-emerald-500/30 mb-3" />
+                <div className="h-px w-8 bg-[rgba(16,185,129,0.3)] mb-3" />
                 <p className="text-neutral-300 text-xs leading-relaxed font-sans">
                   {activity.summary}
                 </p>
               </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-black/80 rotate-45 z-[-1]" />
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[rgba(0,0,0,0.8)] rotate-45 z-[-1]" />
             </motion.div>
         </div>
 

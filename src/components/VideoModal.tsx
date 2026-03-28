@@ -41,7 +41,7 @@ export default function VideoModal({ project, isOpen, onClose }: VideoModalProps
         >
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            className="absolute inset-0 bg-[rgba(0,0,0,0.8)] backdrop-blur-md"
             onClick={onClose}
           />
           
@@ -51,12 +51,12 @@ export default function VideoModal({ project, isOpen, onClose }: VideoModalProps
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10"
+            className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-[rgba(255,255,255,0.1)]"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors backdrop-blur-sm"
+              className="absolute top-4 right-4 z-10 bg-[rgba(0,0,0,0.5)] hover:bg-black text-white p-2 rounded-full transition-colors backdrop-blur-sm"
               aria-label="Close video"
             >
               <X size={24} />

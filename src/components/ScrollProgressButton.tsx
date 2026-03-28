@@ -82,7 +82,7 @@ export default function ScrollProgressButton() {
       </svg>
       
       {/* Spaceship Icon with subtle launch animation */}
-      <span className="absolute inset-x-0 inset-y-0 flex items-center justify-center text-white/90 pointer-events-none">
+      <span className="absolute inset-x-0 inset-y-0 flex items-center justify-center text-[rgba(255,255,255,0.9)] pointer-events-none">
         <motion.div
           animate={{ 
             y: [0, -4, 0],
@@ -90,7 +90,7 @@ export default function ScrollProgressButton() {
           }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Rocket size={20} className="fill-white/10" />
+          <Rocket size={20} className="fill-[rgba(255,255,255,0.1)]" />
         </motion.div>
       </span>
     </motion.button>
