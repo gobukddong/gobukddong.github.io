@@ -11,8 +11,8 @@ import GeminiConstellation from "@/components/GeminiConstellation";
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-white pt-12 p-4 sm:p-8 md:p-12 lg:p-24 selection:bg-blue-500/30 overflow-x-hidden optimize-gpu">
-      <div className="max-w-7xl mx-auto space-y-12 relative">
+    <main className="min-h-screen text-white pt-32 pb-64 p-4 sm:p-8 md:p-12 lg:p-24 selection:bg-blue-500/30 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto space-y-[12vh] relative text-center">
         <header className="flex flex-col items-center gap-6 pt-10 relative text-center">
           <h1 className="text-5xl md:text-6xl font-semibold tracking-tight font-outfit">
             Yang's{" "}
@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </header>
 
-        <section id="videos" className="space-y-4 scroll-mt-12 relative content-auto">
+        <section id="videos" className="space-y-10 scroll-mt-32 relative py-16">
           <div className="border-b border-neutral-800 pb-2 flex justify-center">
             <h2 className="text-3xl md:text-5xl uppercase text-transparent bg-clip-text bg-[linear-gradient(to_bottom,#e8e8e8_0%,#ffffff_20%,#888888_40%,#cccccc_55%,#aaaaaa_70%,#ffffff_85%,#999999_100%)] text-center font-bold tracking-widest">
               Videos
@@ -39,7 +39,7 @@ export default function Home() {
           <VideoGrid />
         </section>
 
-        <section id="projects" className="space-y-8 scroll-mt-12 relative content-auto">
+        <section id="projects" className="space-y-10 scroll-mt-32 relative content-auto py-16">
           <div className="border-b border-neutral-800 pb-2 flex justify-center">
             <h2 className="text-3xl md:text-5xl uppercase text-transparent bg-clip-text bg-[linear-gradient(to_bottom,#e8e8e8_0%,#ffffff_20%,#888888_40%,#cccccc_55%,#aaaaaa_70%,#ffffff_85%,#999999_100%)] text-center font-bold tracking-widest">
               Projects
@@ -48,7 +48,7 @@ export default function Home() {
           <CosmicSystem />
         </section>
         
-        <section id="activities" className="space-y-8 scroll-mt-12 relative content-auto">
+        <section id="activities" className="space-y-8 scroll-mt-12 relative">
           <div className="border-b border-neutral-800 pb-2 flex justify-center">
             <h2 className="text-3xl md:text-5xl uppercase text-transparent bg-clip-text bg-[linear-gradient(to_bottom,#e8e8e8_0%,#ffffff_20%,#888888_40%,#cccccc_55%,#aaaaaa_70%,#ffffff_85%,#999999_100%)] text-center font-bold tracking-widest">
               Activities
@@ -57,7 +57,7 @@ export default function Home() {
           <ActivityGrid />
         </section>
 
-        <section id="certifications" className="space-y-8 scroll-mt-12 relative content-auto">
+        <section id="certifications" className="space-y-8 scroll-mt-12 relative">
           <div className="border-b border-neutral-800 pb-2 flex justify-center">
             <h2 className="text-3xl md:text-5xl uppercase text-transparent bg-clip-text bg-[linear-gradient(to_bottom,#e8e8e8_0%,#ffffff_20%,#888888_40%,#cccccc_55%,#aaaaaa_70%,#ffffff_85%,#999999_100%)] text-center font-bold tracking-widest">
               Certifications
@@ -66,7 +66,7 @@ export default function Home() {
           <Certifications />
         </section>
 
-        <section id="tech" className="space-y-8 scroll-mt-12 relative content-auto">
+        <section id="tech" className="space-y-8 scroll-mt-12 relative">
           <div className="border-b border-neutral-800 pb-2 flex justify-center">
             <h2 className="text-3xl md:text-5xl uppercase text-transparent bg-clip-text bg-[linear-gradient(to_bottom,#e8e8e8_0%,#ffffff_20%,#888888_40%,#cccccc_55%,#aaaaaa_70%,#ffffff_85%,#999999_100%)] text-center font-bold tracking-widest">
               I Use these

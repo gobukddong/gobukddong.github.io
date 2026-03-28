@@ -15,7 +15,7 @@ interface VideoCardProps {
 
 export default function VideoCard({ project, onClick, priority = false, isBlackHoleActive = false, index }: VideoCardProps) {
   return (
-    <div className="relative aspect-video">
+    <div className="relative w-full max-w-4xl mx-auto aspect-video overflow-visible">
       {/* Original Card: Hides during event */}
       <motion.div
         className={`group relative cursor-pointer overflow-hidden rounded-xl bg-neutral-900 w-full h-full shadow-lg transition-opacity duration-500 ${isBlackHoleActive ? 'opacity-0' : 'opacity-100'}`}
@@ -51,7 +51,7 @@ export default function VideoCard({ project, onClick, priority = false, isBlackH
             <Play fill="currentColor" size={32} />
           </motion.div>
         </div>
-        <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-end">
+        <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-end text-left">
           <h3 className="text-white font-bold text-lg leading-tight mb-1">{project.title}</h3>
           <span className="text-red-400 text-xs font-bold uppercase tracking-wider mb-2">{project.category}</span>
           <p className="text-neutral-300 text-sm line-clamp-2">{project.description}</p>

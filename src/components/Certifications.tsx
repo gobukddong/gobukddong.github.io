@@ -103,7 +103,6 @@ function LicenseCard({
         ref={cardRef}
         className="w-full h-full relative preserve-3d cursor-pointer"
         style={{ 
-          willChange: "transform, scale, rotateY",
           transformStyle: "preserve-3d"
         }}
         onMouseMove={handleMouseMove}
@@ -123,14 +122,13 @@ function LicenseCard({
         <div 
           className="absolute inset-0 w-full h-full backface-hidden z-20 overflow-visible"
           style={{ 
-            transform: "rotateY(0deg) translateZ(1px)", 
             backfaceVisibility: "hidden", 
             WebkitBackfaceVisibility: "hidden",
             transformStyle: "preserve-3d"
           }}
         >
           <motion.div 
-            className="w-full h-full rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] flex flex-col p-7 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden group"
+            className="w-full h-full rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] flex flex-col p-7 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden group text-left"
             style={{ 
               rotateX: isFocused ? 0 : tiltX,
               rotateY: isFocused ? 0 : tiltY,
@@ -154,7 +152,6 @@ function LicenseCard({
             </div>
 
             <div className="mt-auto flex justify-between items-end relative z-10 pt-4 border-t border-[rgba(255,255,255,0.05)]">
-               <div className="text-[10px] font-mono font-black text-[rgba(255,255,255,0.1)] tracking-[0.3em]">SECURE_ID_0x{item.id}</div>
                <div className="text-xs font-mono font-black text-[rgba(255,255,255,0.7)]">{item.date}</div>
             </div>
           </motion.div>
@@ -163,7 +160,7 @@ function LicenseCard({
         <div 
           className="absolute inset-0 w-full h-full backface-hidden rounded-[2rem] border-2 border-[rgba(255,255,255,0.6)] bg-neutral-950 overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.2)]"
           style={{ 
-            transform: "rotateY(180deg) translateZ(1px)",
+            transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transformStyle: "preserve-3d"
@@ -176,7 +173,7 @@ function LicenseCard({
           {/* Digital Data Stream Overlay */}
           <div className="absolute inset-0 opacity-10 bg-[linear-gradient(0deg,transparent_49%,rgba(255,255,255,0.1)_50%,transparent_51%)] bg-[length:100%_4px] animate-scan" />
           
-          <div className="absolute inset-0 flex flex-col p-8 z-10">
+          <div className="absolute inset-0 flex flex-col p-8 z-10 text-left">
             {/* Main Content */}
             <div className="flex-1 flex flex-col justify-center gap-2">
                 <span className="text-[11px] font-mono font-black uppercase tracking-[0.5em] text-[rgba(255,255,255,0.4)]">Credential Issuer</span>
@@ -227,7 +224,7 @@ export default function Certifications() {
   }, []);
 
   return (
-    <div className={`max-w-7xl mx-auto px-4 py-12 relative transition-all duration-500 ${focusedId ? 'z-[200]' : 'z-10'}`} ref={containerRef}>
+    <div className={`max-w-7xl mx-auto px-6 md:px-12 py-32 relative transition-all duration-500 ${focusedId ? 'z-[200]' : 'z-10'}`} ref={containerRef}>
       {/* Background Interactive Layer (Swirl/Glow) */}
       <AnimatePresence>
         {focusedId && (
@@ -241,20 +238,19 @@ export default function Certifications() {
                 {/* Swirl Stars Particles */}
                 <motion.div 
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] border-[1px] border-[rgba(16,185,129,0.05)] rounded-full dashed opacity-40"
-                    style={{ borderStyle: "dashed", borderWidth: "2px" }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250vw] h-[250vw] border-[1px] border-[rgba(16,185,129,0.08)] rounded-full dashed opacity-40"
+                    style={{ borderStyle: "dashed", borderWidth: "1px" }}
                 />
                 <motion.div 
                     animate={{ rotate: -360 }}
-                    transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] border-[1px] border-[rgba(59,130,246,0.05)] rounded-full dashed opacity-30"
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200vw] border-[1px] border-[rgba(59,130,246,0.08)] rounded-full dashed opacity-30"
                     style={{ borderStyle: "dashed", borderWidth: "1px" }}
                 />
                 {/* Central Soft Glow behind the grid */}
                 <div 
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[rgba(255,255,255,0.1)] blur-[150px] rounded-full" 
-                  style={{ willChange: "opacity" }}
                 />
             </motion.div>
         )}

@@ -13,19 +13,12 @@ interface VideoModalProps {
 
 export default function VideoModal({ project, isOpen, onClose }: VideoModalProps) {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     
     window.addEventListener("keydown", handleEscape);
     return () => {
-      document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen, onClose]);
@@ -37,7 +30,7 @@ export default function VideoModal({ project, isOpen, onClose }: VideoModalProps
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-hidden"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-hidden"
         >
           {/* Backdrop */}
           <div 
@@ -51,7 +44,13 @@ export default function VideoModal({ project, isOpen, onClose }: VideoModalProps
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-[rgba(255,255,255,0.1)]"
+            className="relative bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-[rgba(255,255,255,0.1)] flex items-center justify-center"
+            style={{ 
+                width: "min(1200px, 90vw, 75vh * 16 / 9)", 
+                aspectRatio: "16 / 9",
+                height: "auto",
+                maxHeight: "75vh"
+            }}
           >
             {/* Close Button */}
             <button

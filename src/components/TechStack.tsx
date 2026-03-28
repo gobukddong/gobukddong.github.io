@@ -56,7 +56,7 @@ function SkillBrick({
   const brickRef = useRef<HTMLDivElement>(null);
   const [pullOffset, setPullOffset] = useState({ x: 0, y: 0 });
 
-  const REACTIONS = ["Ouch", "Hey!", "Don't press me", "Stop it", "Ooh", "Kek", "Rude!"];
+  const REACTIONS = ["Ouch", "Hey!", "Don't press me", "Stop it", "Ooh", "바보", "What?","Oops", "Rude!"];
 
   useEffect(() => {
     // ... rest of useEffect

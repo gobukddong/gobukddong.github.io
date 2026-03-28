@@ -14,8 +14,17 @@ export default function Footer() {
 
   return (
     <footer className="mt-24 pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between text-neutral-400 pb-8">
-      <div className="mb-4 md:mb-0">
+      <div className="mb-4 md:mb-0 text-left">
         <p className="text-sm">© {new Date().getFullYear()} Yang's Portfolio. All rights reserved.</p>
+        <div className="mt-6 space-y-1.5">
+          <p className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-transparent bg-clip-text bg-[linear-gradient(to_right,#ff00ff,#00ffff,#ffff00,#00ff00)] drop-shadow-[0_0_8px_rgba(0,255,255,0.3)]">Special Thanks</p>
+          <p className="text-[12px] font-sans text-neutral-400 font-medium">
+            UI/UX Design & Responsive Web QA : <span className="text-white">jinjoo</span>
+          </p>
+          <p className="text-[12px] font-sans text-neutral-400 font-medium">
+            Video Design Review : <span className="text-white">jeongyun</span>
+          </p>
+        </div>
       </div>
       
       <div className="flex gap-8">

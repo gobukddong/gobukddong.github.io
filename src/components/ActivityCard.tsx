@@ -15,6 +15,41 @@ interface ActivityCardProps {
 
 export default function ActivityCard({ activity, index, x, y, isBlackHoleActive = false }: ActivityCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect if the device is a touch-based (mobile/tablet)
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(pointer: coarse)").matches);
+    };
+    checkMobile();
+    
+    // Reset hover state when clicking/tapping elsewhere on mobile
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (isMobile && isHovered) {
+        setIsHovered(false);
+      }
+    };
+
+    if (isMobile && isHovered) {
+      window.addEventListener("touchstart", handleOutsideClick);
+      window.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      window.removeEventListener("touchstart", handleOutsideClick);
+      window.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isMobile, isHovered]);
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (isMobile && !isHovered) {
+      // First tap on mobile: prevent navigation and show panel
+      e.preventDefault();
+      setIsHovered(true);
+    }
+    // Else: allow navigation on second tap OR if not on mobile
+  };
 
   return (
     <div 
@@ -25,8 +60,9 @@ export default function ActivityCard({ activity, index, x, y, isBlackHoleActive 
         href={activity.externalUrl || `/activities/${activity.id}`}
         {...(activity.externalUrl ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className="relative block"
-        onMouseEnter={() => !isBlackHoleActive && setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => !isBlackHoleActive && !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
+        onClick={handleClick}
       >
         {/* Original Star: Hides during event */}
         <div className={`transition-opacity duration-500 ${isBlackHoleActive ? 'opacity-0' : 'opacity-100'}`}>

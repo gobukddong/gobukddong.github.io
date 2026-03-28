@@ -131,14 +131,6 @@ export default function SpaceEffect() {
       mouseRef.current.y = e.y;
     };
 
-    const handleClick = () => {
-      // Create a temporary "explosion" effect by temporarily increasing mouse radius
-      const originalRadius = mouseRef.current.radius;
-      mouseRef.current.radius = 400;
-      setTimeout(() => {
-        mouseRef.current.radius = originalRadius;
-      }, 200);
-    };
 
     const handleResize = () => {
       init();
@@ -148,12 +140,10 @@ export default function SpaceEffect() {
     animate();
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("click", handleClick);
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("click", handleClick);
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationId);
     };
