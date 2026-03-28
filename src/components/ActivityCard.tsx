@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ActivityProject } from "@/data/activities";
 import Link from "next/link";
@@ -15,6 +15,7 @@ interface ActivityCardProps {
 
 export default function ActivityCard({ activity, index, x, y, isBlackHoleActive = false }: ActivityCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function ActivityCard({ activity, index, x, y, isBlackHoleActive 
     
     // Reset hover state when clicking/tapping elsewhere on mobile
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
-      if (isMobile && isHovered) {
+      if (isMobile && isHovered && containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsHovered(false);
       }
     };
@@ -53,6 +54,7 @@ export default function ActivityCard({ activity, index, x, y, isBlackHoleActive 
 
   return (
     <div 
+      ref={containerRef}
       className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
       style={{ left: x, top: y }}
     >

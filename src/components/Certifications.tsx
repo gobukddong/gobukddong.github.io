@@ -120,11 +120,12 @@ function LicenseCard({
       >
         {/* FRONT FACE */}
         <div 
-          className="absolute inset-0 w-full h-full backface-hidden z-20 overflow-visible"
+          className="absolute inset-0 w-full h-full backface-hidden overflow-visible"
           style={{ 
             backfaceVisibility: "hidden", 
             WebkitBackfaceVisibility: "hidden",
-            transformStyle: "preserve-3d"
+            transformStyle: "preserve-3d",
+            transform: "translateZ(1px)"
           }}
         >
           <motion.div 
@@ -160,7 +161,7 @@ function LicenseCard({
         <div 
           className="absolute inset-0 w-full h-full backface-hidden rounded-[2rem] border-2 border-[rgba(255,255,255,0.6)] bg-neutral-950 overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.2)]"
           style={{ 
-            transform: "rotateY(180deg)",
+            transform: "rotateY(180deg) translateZ(1px)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transformStyle: "preserve-3d"

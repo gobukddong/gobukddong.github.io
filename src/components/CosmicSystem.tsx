@@ -61,10 +61,10 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
   ];
 
   return (
-    <div className={`relative w-full h-[750px] md:h-[1000px] lg:h-[1100px] bg-transparent rounded-3xl overflow-hidden flex items-center justify-center transition-opacity duration-500 ${isBlackHoleActive ? 'opacity-80' : 'opacity-100'}`}>
+    <div className={`relative w-full h-[550px] sm:h-[700px] md:h-[900px] lg:h-[1100px] bg-transparent rounded-3xl overflow-hidden flex items-center justify-center transition-opacity duration-500 ${isBlackHoleActive ? 'opacity-80' : 'opacity-100'}`}>
       
       {/* Viewport Scale */}
-      <div className="relative w-[1100px] h-[1100px] scale-[0.55] sm:scale-[0.75] md:scale-100 flex items-center justify-center overflow-visible">
+      <div className="relative w-[1100px] h-[1100px] scale-[0.42] sm:scale-[0.55] md:scale-[0.8] lg:scale-100 flex items-center justify-center overflow-visible">
         
         {/* Central Star (Sun) */}
         <motion.div 

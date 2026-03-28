@@ -25,6 +25,11 @@ export default function SpaceEffect() {
 
     let particles: Particle[] = [];
     let animationId: number;
+    let isPC = false;
+
+    const checkDevice = () => {
+      isPC = window.matchMedia("(pointer: fine)").matches;
+    };
 
     const init = () => {
       canvas.width = window.innerWidth;
@@ -55,7 +60,6 @@ export default function SpaceEffect() {
       }
     };
 
-    // Helper to find closest point on line segment
     const closestPointOnSegment = (px: number, py: number, x1: number, y1: number, x2: number, y2: number) => {
       const l2 = (x1 - x2) ** 2 + (y1 - y2) ** 2;
       if (l2 === 0) return { x: x1, y: y1 };
@@ -67,13 +71,16 @@ export default function SpaceEffect() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      const mouseSpeed = Math.sqrt(
-        (mouseRef.current.x - mouseRef.current.prevX) ** 2 + 
-        (mouseRef.current.y - mouseRef.current.prevY) ** 2
-      );
-      
-      // Dynamic radius based on speed (up to a limit)
-      const dynamicRadius = Math.min(mouseRef.current.radius + mouseSpeed * 0.5, 300);
+      let dynamicRadius = 150;
+      let mouseSpeed = 0;
+
+      if (isPC) {
+        mouseSpeed = Math.sqrt(
+          (mouseRef.current.x - mouseRef.current.prevX) ** 2 + 
+          (mouseRef.current.y - mouseRef.current.prevY) ** 2
+        );
+        dynamicRadius = Math.min(mouseRef.current.radius + mouseSpeed * 0.5, 300);
+      }
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -85,24 +92,24 @@ export default function SpaceEffect() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        // Interaction with the line segment formed by mouse movement
-        const closest = closestPointOnSegment(
-          p.x, p.y, 
-          mouseRef.current.prevX, mouseRef.current.prevY,
-          mouseRef.current.x, mouseRef.current.y
-        );
+        if (isPC) {
+          const closest = closestPointOnSegment(
+            p.x, p.y, 
+            mouseRef.current.prevX, mouseRef.current.prevY,
+            mouseRef.current.x, mouseRef.current.y
+          );
+          const dx = closest.x - p.x;
+          const dy = closest.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
 
-        const dx = closest.x - p.x;
-        const dy = closest.y - p.y;
-        const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
-
-        if (distance < dynamicRadius) {
-          const force = (dynamicRadius - distance) / dynamicRadius;
-          const repulsionStrength = 1 + mouseSpeed * 0.05; // Stronger core push when moving fast
-          const directionX = (dx / distance) * force * p.density * repulsionStrength;
-          const directionY = (dy / distance) * force * p.density * repulsionStrength;
-          p.x -= directionX;
-          p.y -= directionY;
+          if (distance < dynamicRadius) {
+            const force = (dynamicRadius - distance) / dynamicRadius;
+            const repulsionStrength = 1 + mouseSpeed * 0.05;
+            const directionX = (dx / distance) * force * p.density * repulsionStrength;
+            const directionY = (dy / distance) * force * p.density * repulsionStrength;
+            p.x -= directionX;
+            p.y -= directionY;
+          }
         }
 
         ctx.fillStyle = p.color;
@@ -119,10 +126,11 @@ export default function SpaceEffect() {
         }
       }
       
-      // Update prevMouse
-      mouseRef.current.prevX = mouseRef.current.x;
-      mouseRef.current.prevY = mouseRef.current.y;
-      
+      if (isPC) {
+        mouseRef.current.prevX = mouseRef.current.x;
+        mouseRef.current.prevY = mouseRef.current.y;
+      }
+
       animationId = requestAnimationFrame(animate);
     };
 
@@ -131,15 +139,17 @@ export default function SpaceEffect() {
       mouseRef.current.y = e.y;
     };
 
-
     const handleResize = () => {
       init();
     };
 
+    checkDevice();
     init();
     animate();
 
-    window.addEventListener("mousemove", handleMouseMove);
+    if (isPC) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
     window.addEventListener("resize", handleResize);
 
     return () => {
