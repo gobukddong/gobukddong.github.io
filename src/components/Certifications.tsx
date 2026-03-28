@@ -96,7 +96,7 @@ function LicenseCard({
 
   return (
     <div 
-      className={`relative w-full h-[240px] perspective-1200 transition-[filter,opacity,transform] duration-500 ${isAnyFocused && !isFocused ? 'blur-[6px] opacity-20 grayscale scale-90 pointer-events-none' : ''}`}
+      className={`relative w-full h-[240px] perspective-1200 transition-[filter,opacity,transform] duration-[600ms] ${isAnyFocused && !isFocused ? 'opacity-20 grayscale scale-90 pointer-events-none' : ''}`}
       style={{ zIndex: isFocused ? 110 : 10 }}
     >
       <motion.div
@@ -127,7 +127,7 @@ function LicenseCard({
           }}
         >
           <motion.div 
-            className="w-full h-full rounded-[2rem] border-2 border-white/20 bg-white/5 backdrop-blur-xl flex flex-col p-7 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden group"
+            className="w-full h-full rounded-[2rem] border-2 border-white/20 bg-white/5 flex flex-col p-7 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden group"
             style={{ 
               rotateX: isFocused ? 0 : tiltX,
               rotateY: isFocused ? 0 : tiltY,
@@ -169,7 +169,7 @@ function LicenseCard({
         >
           {/* Iridescent background */}
           <div className="absolute inset-0 bg-[linear-gradient(135deg,#4facfeaa,#00f2feaa,#70b2ffaa)] animate-hologram opacity-30" />
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl" />
+          <div className="absolute inset-0 bg-black/40" />
           
           {/* Digital Data Stream Overlay */}
           <div className="absolute inset-0 opacity-10 bg-[linear-gradient(0deg,transparent_49%,rgba(255,255,255,0.1)_50%,transparent_51%)] bg-[length:100%_4px] animate-scan" />
@@ -225,7 +225,7 @@ export default function Certifications() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 relative" ref={containerRef}>
+    <div className={`max-w-7xl mx-auto px-4 py-12 relative transition-all duration-500 ${focusedId ? 'z-[200]' : 'z-10'}`} ref={containerRef}>
       {/* Background Interactive Layer (Swirl/Glow) */}
       <AnimatePresence>
         {focusedId && (
@@ -235,7 +235,7 @@ export default function Certifications() {
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 z-[100] pointer-events-none overflow-hidden"
             >
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+                <div className="absolute inset-0 bg-black/40" />
                 {/* Swirl Stars Particles */}
                 <motion.div 
                     animate={{ rotate: 360 }}

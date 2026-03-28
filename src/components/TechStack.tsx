@@ -127,7 +127,7 @@ function SkillBrick({
             initial={{ opacity: 0, y: 0, scale: 0.5 }}
             animate={{ opacity: 1, y: -45, scale: 1 }}
             exit={{ opacity: 0, y: -65, scale: 0.8 }}
-            className="absolute z-50 pointer-events-none whitespace-nowrap text-[10px] font-outfit font-bold text-white/90 bg-white/10 backdrop-blur-lg px-2.5 py-1 rounded-full border border-white/20 shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
+            className="absolute z-50 pointer-events-none whitespace-nowrap text-[10px] font-outfit font-bold text-white/90 bg-white/10 px-2.5 py-1 rounded-full border border-white/20 shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
             style={{ 
               left: "50%",
               transform: "translateX(-50%)",
@@ -169,10 +169,9 @@ function SkillBrick({
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.85, filter: "brightness(0.6)" }}
               transition={{ type: "spring", stiffness: 600, damping: 20 }}
-              onClick={handleClick}
               className="
                 relative flex items-center justify-center px-6 py-2.5
-                bg-white/10 backdrop-blur-xl text-neutral-200 font-outfit font-light text-xs md:text-sm tracking-[0.2em] uppercase
+                bg-white/10 text-neutral-200 font-outfit font-light text-xs md:text-sm tracking-[0.2em] uppercase
                 rounded-full border border-white/5 overflow-hidden
                 hover:bg-white/15 hover:text-white hover:border-white/10
                 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_0_8px_rgba(255,255,255,0.05)]
@@ -286,7 +285,7 @@ export default function TechStack() {
                 onClick={handleReset}
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white font-outfit font-medium text-sm tracking-[0.2em] uppercase shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-colors"
+                className="px-8 py-3 bg-white/10 border border-white/20 rounded-full text-white font-outfit font-medium text-sm tracking-[0.2em] uppercase shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-colors"
               >
                 Restore Stack
               </motion.button>
