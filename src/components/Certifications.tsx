@@ -2,7 +2,7 @@
 
 import { Award, ShieldCheck, Hash, Calendar, CheckCircle2, User, Globe, Database, Milestone } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, memo } from "react";
 
 // Technical Mock Data based on Meta-Prompt
 const certs = [
@@ -51,7 +51,7 @@ const certs = [
   },
 ];
 
-function LicenseCard({ 
+const LicenseCard = memo(({ 
     item, 
     isFocused, 
     isAnyFocused, 
@@ -61,7 +61,7 @@ function LicenseCard({
     isFocused: boolean, 
     isAnyFocused: boolean,
     onToggleFocus: (e: React.MouseEvent) => void 
-}) {
+}) => {
   const cardRef = useRef<HTMLDivElement>(null);
   
   const x = useMotionValue(0);
@@ -96,14 +96,18 @@ function LicenseCard({
 
   return (
     <div 
-      className={`relative w-full h-[240px] perspective-1200 transition-[filter,opacity,transform] duration-[600ms] ${isAnyFocused && !isFocused ? 'opacity-20 grayscale scale-90 pointer-events-none' : ''}`}
-      style={{ zIndex: isFocused ? 110 : 10 }}
+      className={`relative w-full h-[240px] perspective-1200 transition-opacity duration-500 ${isAnyFocused && !isFocused ? 'opacity-20 grayscale scale-90 pointer-events-none' : ''}`}
+      style={{ 
+        zIndex: isFocused ? 110 : 10,
+        willChange: "opacity, transform"
+      }}
     >
       <motion.div
         ref={cardRef}
         className="w-full h-full relative preserve-3d cursor-pointer"
         style={{ 
-          transformStyle: "preserve-3d"
+          transformStyle: "preserve-3d",
+          willChange: "transform"
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -114,8 +118,8 @@ function LicenseCard({
             y: isFocused ? -20 : 0
         }}
         transition={{ 
-            duration: 0.6,
-            ease: [0.19, 1, 0.22, 1] // Snappy technical ease
+            duration: 0.5, // Faster transition
+            ease: [0.16, 1, 0.3, 1] // Quad/Cubic out for smoother start
         }}
       >
         {/* FRONT FACE */}
@@ -159,7 +163,7 @@ function LicenseCard({
         </div>
 
         <div 
-          className="absolute inset-0 w-full h-full backface-hidden rounded-[2rem] border-2 border-[rgba(255,255,255,0.6)] bg-neutral-950 overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.2)]"
+          className="absolute inset-0 w-full h-full backface-hidden rounded-[2rem] border-2 border-[rgba(255,255,255,0.6)] bg-neutral-950 overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.1)]"
           style={{ 
             transform: "rotateY(180deg) translateZ(1px)",
             backfaceVisibility: "hidden",
@@ -207,7 +211,7 @@ function LicenseCard({
       </motion.div>
     </div>
   );
-}
+});
 
 export default function Certifications() {
   const [focusedId, setFocusedId] = useState<string | null>(null);
@@ -251,7 +255,8 @@ export default function Certifications() {
                 />
                 {/* Central Soft Glow behind the grid */}
                 <div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[rgba(255,255,255,0.1)] blur-[150px] rounded-full" 
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[rgba(255,255,255,0.08)] blur-[100px] rounded-full" 
+                  style={{ willChange: "opacity" }}
                 />
             </motion.div>
         )}
