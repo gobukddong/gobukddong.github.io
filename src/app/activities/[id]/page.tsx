@@ -5,8 +5,6 @@ import BackButton from "@/components/BackButton";
 
 import Activity1 from "./Activity1";
 import Activity2 from "./Activity2";
-import Activity3 from "./Activity3";
-import Activity4 from "./Activity4";
 
 export default async function ActivityDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -16,13 +14,29 @@ export default async function ActivityDetail({ params }: { params: Promise<{ id:
     notFound();
   }
 
+  // Redirect to external URL if it exists (for server-side navigation)
+  if (activity.externalUrl) {
+    // Note: In a real app, you might use redirect(activity.externalUrl) here.
+    // But for this portfolio, we'll show a message with a link just in case.
+    return (
+      <main className="min-h-screen bg-[#050505] text-white p-4 sm:p-8 md:p-12 lg:p-24 selection:bg-emerald-500/30 text-center">
+        <h1 className="text-2xl font-bold mb-4">{activity.title} 외부 링크</h1>
+        <p className="mb-8 text-neutral-400">이 활동은 외부 사이트에서 확인하실 수 있습니다.</p>
+        <a 
+          href={activity.externalUrl} 
+          className="px-6 py-3 bg-emerald-500 text-neutral-900 rounded-full font-bold hover:bg-emerald-400 transition-colors"
+        >
+          외부 링크로 이동하기
+        </a>
+      </main>
+    );
+  }
+
   let ContentComponent;
   switch (id) {
     case "1": ContentComponent = Activity1; break;
     case "2": ContentComponent = Activity2; break;
-    case "3": ContentComponent = Activity3; break;
-    case "4": ContentComponent = Activity4; break;
-    default: ContentComponent = () => <p>활동을 찾을 수 없습니다.</p>;
+    default: ContentComponent = () => <p>기록된 활동 내용이 없습니다.</p>;
   }
 
   return (

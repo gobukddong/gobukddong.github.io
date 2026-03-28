@@ -3,6 +3,7 @@ export interface ActivityProject {
   title: string;
   category: string;
   summary: string;
+  externalUrl?: string;
 }
 
 export const activities: ActivityProject[] = [
@@ -15,7 +16,7 @@ export const activities: ActivityProject[] = [
   {
     id: "2",
     title: "PROBLEM SOLVING",
-    category: "2025.02 ~",
+    category: "2026.02 ~",
     summary: "anything",
   },
   {
@@ -23,11 +24,13 @@ export const activities: ActivityProject[] = [
     title: "BLOG",
     category: "2026.01 ~",
     summary: "Posting",
+    externalUrl: "https://yangsangyunblog.tistory.com/",
   },
   {
     id: "4",
     title: "BOJ",
     category: "2026.01 ~",
     summary: "Coding",
+    externalUrl: "https://solved.ac/profile/gobukddang#",
   }
 ];

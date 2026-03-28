@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Rocket } from "lucide-react";
 
 export default function ScrollProgressButton() {
   const [visible, setVisible] = useState(false);
@@ -46,7 +47,7 @@ export default function ScrollProgressButton() {
       }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-50 flex items-center justify-center"
+      className="fixed bottom-8 right-8 z-50 flex items-center justify-center group"
       style={{ pointerEvents: visible ? "auto" : "none" }}
     >
       <svg width={size} height={size} className="-rotate-90 drop-shadow-[0_0_8px_rgba(0,0,0,0.5)]">
@@ -80,14 +81,17 @@ export default function ScrollProgressButton() {
         </defs>
       </svg>
       
-      {/* Arrow Icon with subtle animation */}
-      <span className="absolute inset-x-0 inset-y-0 flex items-center justify-center text-white/90 text-xl pointer-events-none">
-        <motion.span
-          animate={{ y: [0, -2, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      {/* Spaceship Icon with subtle launch animation */}
+      <span className="absolute inset-x-0 inset-y-0 flex items-center justify-center text-white/90 pointer-events-none">
+        <motion.div
+          animate={{ 
+            y: [0, -4, 0],
+            rotate: [-45, -45, -45, -45] // Fixed perfectly at 90 degrees vertical
+          }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          ↑
-        </motion.span>
+          <Rocket size={20} className="fill-white/10" />
+        </motion.div>
       </span>
     </motion.button>
   );

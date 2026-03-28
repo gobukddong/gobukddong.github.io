@@ -4,6 +4,7 @@
   --color-background: #050505;
   --color-foreground: #ffffff;
   --font-orbitron: var(--font-orbitron);
+  --font-outfit: var(--font-outfit);
   --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
@@ -20,6 +21,6 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-orbitron tracking-widest;
+    @apply font-outfit uppercase tracking-[0.2em] font-medium;
   }
 }

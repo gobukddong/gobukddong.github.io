@@ -11,7 +11,11 @@ interface DocumentCardProps {
 
 export default function DocumentCard({ document }: DocumentCardProps) {
   return (
-    <Link href={`/projects/${document.id}`} className="block h-full outline-none">
+    <Link 
+      href={document.externalUrl || `/projects/${document.id}`} 
+      className="block h-full outline-none"
+      {...(document.externalUrl ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
       <motion.div
         className="group relative cursor-pointer overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 p-5 flex flex-col h-full min-h-[9.5rem] shadow-lg hover:border-neutral-700 transition-colors"
         whileHover={{ y: -5 }}

@@ -5,7 +5,7 @@ import { Project, projects } from "@/data/projects";
 import VideoCard from "./VideoCard";
 import VideoModal from "./VideoModal";
 
-export default function VideoGrid() {
+export default function VideoGrid({ isBlackHoleActive = false }: { isBlackHoleActive?: boolean }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,8 +27,10 @@ export default function VideoGrid() {
           <VideoCard 
             key={project.id} 
             project={project} 
+            index={index}
             onClick={handleOpenModal} 
             priority={index < 4}
+            isBlackHoleActive={isBlackHoleActive}
           />
         ))}
       </div>

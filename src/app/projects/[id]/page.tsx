@@ -17,6 +17,31 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
     notFound();
   }
 
+  // Handle external project links (only if explicitly set as direct links)
+  if (project.externalUrl) {
+    return (
+      <main className="min-h-screen bg-[#050505] text-white p-4 sm:p-8 md:p-12 lg:p-24 selection:bg-blue-500/30 text-center">
+        <div className="max-w-4xl mx-auto space-y-8 pt-20">
+          <h1 className="text-4xl font-extrabold tracking-tight font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+            {project.title} 외부 링크
+          </h1>
+          <p className="text-xl text-neutral-400">이 프로젝트는 외부 사이트에서 확인하실 수 있습니다.</p>
+          <a 
+            href={project.externalUrl} 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-500 transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20"
+          >
+            프로젝트 보러가기
+          </a>
+          <div className="pt-8">
+            <BackButton />
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   let ContentComponent;
   switch (id) {
     case "1": ContentComponent = Project1; break;
@@ -24,7 +49,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
     case "3": ContentComponent = Project3; break;
     case "4": ContentComponent = Project4; break;
     case "5": ContentComponent = Project5; break;
-    default: ContentComponent = () => <p>항목을 찾을 수 없습니다.</p>;
+    default: ContentComponent = () => <p>기록된 프로젝트 내용이 없습니다.</p>;
   }
 
   return (

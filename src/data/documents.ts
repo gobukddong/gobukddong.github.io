@@ -4,6 +4,7 @@ export interface DocumentProject {
   category: string;
   summary: string;
   content?: string;
+  externalUrl?: string;
 }
 
 export const documents: DocumentProject[] = [
@@ -28,7 +29,7 @@ export const documents: DocumentProject[] = [
   {
     id: "4",
     title: "에어드럼",
-    category: "2026.10~2026.12",
+    category: "2025.10~2025.12",
     summary: "Engineering",
 
   },
