@@ -17,12 +17,22 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
     notFound();
   }
 
+  const projectThemes: Record<string, { gradient: string; selection: string }> = {
+    "1": { gradient: "from-indigo-400 to-purple-500", selection: "selection:bg-indigo-500/30" },
+    "2": { gradient: "from-emerald-400 to-cyan-500", selection: "selection:bg-emerald-500/30" },
+    "3": { gradient: "from-blue-400 to-sky-500", selection: "selection:bg-blue-500/30" },
+    "4": { gradient: "from-orange-400 to-red-500", selection: "selection:bg-orange-500/30" },
+    "5": { gradient: "from-rose-400 to-indigo-500", selection: "selection:bg-rose-500/30" },
+  };
+
+  const theme = projectThemes[id] || { gradient: "from-blue-400 to-indigo-500", selection: "selection:bg-blue-500/30" };
+
   // Handle external project links (only if explicitly set as direct links)
   if (project.externalUrl) {
     return (
-      <main className="min-h-screen bg-[#050505] text-white p-4 sm:p-8 md:p-12 lg:p-24 selection:bg-blue-500/30 text-center">
+      <main className={`min-h-screen bg-[#050505] text-white p-4 sm:p-8 md:p-12 lg:p-24 ${theme.selection} text-center`}>
         <div className="max-w-4xl mx-auto space-y-8 pt-20">
-          <h1 className="text-4xl font-extrabold tracking-tight font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+          <h1 className={`text-3xl md:text-4xl font-bold tracking-tighter font-outfit text-transparent bg-clip-text bg-gradient-to-r ${theme.gradient}`}>
             {project.title} 외부 링크
           </h1>
           <p className="text-xl text-neutral-400">이 프로젝트는 외부 사이트에서 확인하실 수 있습니다.</p>
@@ -53,13 +63,13 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
   }
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white p-4 sm:p-8 md:p-12 lg:p-24 selection:bg-blue-500/30">
+    <main className={`min-h-screen bg-[#050505] text-white p-4 sm:p-8 md:p-12 lg:p-24 ${theme.selection}`}>
       <div className="max-w-4xl mx-auto space-y-12">
         <header className="space-y-6 pt-10">
           <BackButton />
           
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+            <h1 className={`text-4xl md:text-5xl font-bold tracking-tighter font-outfit text-transparent bg-clip-text bg-gradient-to-r ${theme.gradient}`}>
               {project.title}
             </h1>
             <p className="text-xl text-neutral-400 font-sans leading-relaxed max-w-2xl">

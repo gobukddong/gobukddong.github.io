@@ -22,7 +22,7 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
       size: 56,
       duration: 35,
       className: "bg-slate-800 border-2 border-slate-600 shadow-[0_0_15px_rgba(30,64,175,0.8)]",
-      name: "React2Shell vuln scanner"
+      name: "React2Shell Vuln Scanner"
     },
     {
       id: "2",
@@ -30,7 +30,7 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
       size: 40,
       duration: 25,
       className: "bg-gradient-to-br from-red-900 to-neutral-900 border border-[rgba(239,68,68,0.5)] shadow-[0_0_20px_rgba(220,38,38,0.5)]",
-      name: "Linux Vuln scanner"
+      name: "Linux Vuln Scanner"
     },
     {
       id: "3",
@@ -56,7 +56,7 @@ export default function CosmicSystem({ isBlackHoleActive = false }: { isBlackHol
       size: 48,
       duration: 60,
       className: "bg-indigo-900 border border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.7)]",
-      name: "meetplz"
+      name: "Meetplz"
     }
   ];
 

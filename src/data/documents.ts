@@ -10,32 +10,32 @@ export interface DocumentProject {
 export const documents: DocumentProject[] = [
   {
     id: "1",
-    title: "react2shell vulnerability scanner",
+    title: "React2Shell Vuln Scanner",
     category: "2026.01~2026.02",
     summary: "Security",
   },
   {
     id: "2",
-    title: "Linux vulnerability scanner",
+    title: "Linux Vuln Scanner",
     category: "2025.10~2026.01",
     summary: "Security",
   },
   {
     id: "3",
-    title: "해양중금속 수거 설계",
+    title: "Ocean Cleanup",
     category: "2025.10",
     summary: "Creative",
   },
   {
     id: "4",
-    title: "에어드럼",
+    title: "Air Drum",
     category: "2025.10~2025.12",
     summary: "Engineering",
 
   },
   {
     id: "5",
-    title: "meetplz 웹 개발",
+    title: "Meetplz",
     category: "2026.02",
     summary: "Web Development",
   }

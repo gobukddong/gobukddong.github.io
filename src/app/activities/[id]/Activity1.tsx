@@ -34,7 +34,7 @@ export default function Activity1() {
           </h2>
         </div>
         <p className="text-base text-neutral-400 font-sans leading-relaxed">
-          ASC 활동 중 해결한 웹 해킹 및 보안 문제 풀이입니다. 제목을 클릭하면 상세 풀이 페이지로 이동합니다.
+          ASC 활동 중 해결한 웹 해킹 및 보안 문제 풀이다. 제목을 클릭하면 상세 풀이 페이지로 이동할 수 있다.
         </p>
         <div className="grid gap-3">
           {asc_problems.map((problem, i) => (
@@ -67,7 +67,7 @@ export default function Activity1() {
           ))}
           {asc_problems.length === 0 && (
             <div className="p-6 bg-neutral-900 border border-neutral-800 rounded-xl text-center text-neutral-500 font-sans italic">
-              아직 등록된 문제풀이가 없습니다.
+              아직 등록된 문제풀이가 없다.
             </div>
           )}
         </div>
@@ -82,7 +82,7 @@ export default function Activity1() {
           </h2>
         </div>
         <p className="text-base text-neutral-400 font-sans leading-relaxed">
-          ASC 활동과 연계된 보안 프로젝트입니다. 카드를 클릭하면 프로젝트 상세 페이지로 이동합니다.
+          ASC 활동과 연계된 보안 프로젝트다. 카드를 클릭하면 프로젝트 상세 페이지로 이동할 수 있다.
         </p>
         <div className="grid gap-3">
           {projectLinks.map((project, i) => (
